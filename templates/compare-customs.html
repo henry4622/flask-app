@@ -2,13 +2,22 @@
 
 {% block main%}
 <body>
-    <div class="look_for_container" style="width: 1500px;">
+    {% if error == "custom" %}
+    <div class="alert alert-danger" role="alert">
+        <p style="color: black; font-size: 35px;">Custom Not Selected</p>
+    </div>
+    {% elif error == "prebuild" %}
+    <div class="alert alert-danger" role="alert">
+        <p style="color: black; font-size: 35px;">Prebuild Not Selected</p>
+    </div>
+    {% endif %}
+    <div class="look_for_container" style="width: 1500px;">     
     <h1 class="title" style="font-size: 60px;">Compare Prebuilds With Your Custom Builds</h1>
     <div class="small-hr"></div>
     <p>Select one prebuild from the dropdown and one custom build and then press the compare button</p>
     <form action="/compare-customs" method="post">
     <div style="display: flex;" class="mx-auto">
-    <select class="design-select mx-auto" name="prebuild">
+    <select class="design-select mx-auto" name="prebuild" required>
         
         <option selected disabled value="">Prebuilds</option>
         {% for prebuild in prebuilds %}
@@ -17,7 +26,7 @@
 
     </select>
     <h1 class="title">VS</h1>
-    <select class="design-select mx-auto" name="custom"> 
+    <select class="design-select mx-auto" name="custom" required> 
         
         <option selected disabled value="">Custom Builds</option>
         {% for custom in customs %}

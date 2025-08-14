@@ -833,11 +833,13 @@ def compare_customs():
     if request.method == "POST":
         prebuild = request.form.get("prebuild")
         custom = request.form.get("custom")
-        prebuild_info = run_query("SELECT * FROM products WHERE name = ?", (prebuild,))
-        custom_info = run_query("SELECT * FROM custom_builds WHERE email = ? AND name = ?", (email, custom, ))
-        print(prebuild_info, custom_info)
+        if prebuild and custom:
+            
+            prebuild_info = run_query("SELECT * FROM products WHERE name = ?", (prebuild,))
+            custom_info = run_query("SELECT * FROM custom_builds WHERE email = ? AND name = ?", (email, custom, ))
         
-        return render_template("compare-customs.html", custom_info=custom_info, prebuild_info=prebuild_info, customs=customs, prebuilds=prebuilds, show=True)
+            return render_template("compare-customs.html", custom_info=custom_info, prebuild_info=prebuild_info, customs=customs, prebuilds=prebuilds, show=True)
+        return render_template("compare-customs.html", customs=customs, prebuilds=prebuilds, show=False)
 
     return render_template("compare-customs.html", customs=customs, prebuilds=prebuilds, show=show)
 
