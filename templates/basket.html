@@ -106,7 +106,7 @@
                 <td>£{{ item.price }} </td>
                 <div  style="display: flex; align-items: center; gap: 8px;">
                 <td>{{ item.quantity }} 
-                        <form action="/add1_to_basket" method="post" style="display: inline;">
+                        <form action="{{ url_for('add1_to_basket') }}" method="post" style="display: inline;">
 
                             <input type="hidden" name="product_name" value="{{ item.name }}">
 
@@ -118,7 +118,7 @@
 
                         {% if item.quantity > 1 %}
 
-                        <form action="/minus1_to_basket" method="post" style="display: inline;">
+                        <form action="{{ url_for('minus1_to_basket') }}" method="post" style="display: inline;">
 
                             <input type="hidden" name="product_name" value="{{ item.name }}">
 
@@ -128,7 +128,7 @@
                             
                         </form>
                         {% else %}
-                        <form action="/add1_to_basket" method="post" style="display: inline;">
+                        <form action="{{ url_for('add1_to_basket') }}" method="post" style="display: inline;">
 
                             <input type="hidden" name="product_name" value="{{ item.name }}">
 
@@ -143,7 +143,7 @@
                 </div>
                 <td>£{{ item.price *( item.quantity)}} </td>
                 <td>
-                    <form action="/remove_from_basket" method="post" style="display: inline;">
+                    <form action="{{ url_for('remove_from_basket') }}" method="post" style="display: inline;">
 
                         <input type="hidden" name="product_name" value="{{ item.name }}">
 
@@ -164,7 +164,7 @@
     </table>
     <br>
     <div class="medium-hr"></div>
-    <form action="/checkout-shipping" method="post">
+    <form action="{{ url_for('checkout_shipping') }}" method="post">
         <button type="submit" class="btn btn-primary" style="width: 500px; height: 60px; font-size: 30px; margin-top: 40px;">Checkout</button>
     </form>
     </div>
