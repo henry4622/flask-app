@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+
+<nav style="--bs-breadcrumb-divider: '>'; color: white;" aria-label="breadcrumb" class="d-flex justify-content-center ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/basket">Basket</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="/checkout-shipping">Shipping</a></li>
+    <li class="breadcrumb-item">Payment</li>
+  </ol>
+</nav>
+
+<div class="look_for_container mx-auto" style="width: 1500px;">
+<h1 class="title">Shipping</h1>
+<div class="medium-hr"></div>
+<p>Please Fill Out Your Address and select which shipping method you would like:</p>
+<div class="alert alert-danger">
+    <p style="color: black; font-size: 35px;">Only PreBuilds Can be delivered with next day delivery</p>
+
+</div>
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+{% endif %}
+<div class="d-flex justify-content-center mt-5">
+<form class="shipping-form justify-content-center " action="/checkout-shipping" method="post">
+        <div class="form-check form-check2 d-flex align-items-center mb-3">
+        <input class="form-check-input" type="radio" name="shipping_service" id="standard" value="standard" checked  style="height: 30px; width: 30px; margin-top: -10px;">
+        <label class="form-check-label" for="standard">
+            <p><strong>Standard Shipping</strong>: 3-5 working days £0.00</p>
+        </label>
+        </div>
+
+        <div class="form-check form-check2 d-flex align-items-center mb-3">
+        <input class="form-check-input" type="radio" name="shipping_service" id="quick" value="quick" style="height: 30px; width: 30px; margin-top: -10px;">
+        <label class="form-check-label" for="quick">
+            <p><strong>Quick Shipping</strong>: 2-3 working days £8.99 or free if over £1000.00</p>
+        </label>
+        </div>
+
+        <div class="form-check form-check2 d-flex align-items-center mb-3">
+        <input class="form-check-input" type="radio" name="shipping_service" id="24hr" value="24hr"  style="height: 30px; width: 30px; margin-top: -10px;">
+        <label class="form-check-label" for="24hr ">
+            <p><strong>Next Day</strong>: 24hr delivery £19.00</p>
+        </label>
+        </div>
+        <div class="form-check form-check2 d-flex flex-column gap-2 mb-3" style="height: 550px;" >
+            <p style="margin-top: -40px; margin-bottom: -20px; font-size: 35px;">Please Enter your shipping details below: </p>
+            <input placeholder="Firstname" class="form-control" type="text" name="firstname" id="firstname" required  maxlength="20" autocomplete="off" style="font-size: 30px; height: 60px; ">
+            <input placeholder="Surname" class="form-control" type="text" name="surname" id="surname" required  maxlength="20" autocomplete="off" style="font-size: 30px; height: 60px; ">
+            <input placeholder="Address" class="form-control" type="text" name="address" id="addresss" required autocomplete="off" style="font-size: 30px; height: 60px; ">
+            <input placeholder="Town / City" class="form-control" type="text" name="town" id="town" required autocomplete="off" style="font-size: 30px; height: 60px; ">
+            <input placeholder="County" class="form-control" type="text" name="county" id="county" required autocomplete="off" style="font-size: 30px; height: 60px; ">
+            <input placeholder="Postcode" class="form-control" type="text" name="postcode" id="postcode" required maxlength="7" autocomplete="off" style="font-size: 30px; height: 60px; ">
+        </div>
+        <div class="form-check form-check2 d-flex  flex-column mb-3" style="height: 130px;">
+            <div class="d-flex align-items-center mb-3" style="margin-top: -50px;">
+            <input class="form-check-input" type="checkbox" name="terms" id="terms" required  style="height: 30px; width: 30px; margin-top: -10px;"> 
+            <label class="form-check-label" for="terms" style="margin-bottom: -15px;">
+                <p>I agree to the <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="">Terms and Conditions</a></p>
+            </label>
+            </div>
+
+            <div class="d-flex align-items-center mb-3" style="margin-top: -20px;">
+            <input class="form-check-input" type="checkbox" name="terms" id="terms" style="height: 30px; width: 30px; margin-top: -10px; ">
+            <label class="form-check-label" for="terms" style="margin-bottom: -15px;">
+                <p>I agree to recieve updates via email about my delivery</a></p>
+            </label>
+            </div>
+        </div>
+        <div class="medium-hr"></div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" style="height: 100px; width: 550px; font-size: 45px; font-family: 'poppins', sans-serif;">Continue to Payment</button>
+        </div>
+        
+  </div>
+</form>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Terms and Conditions at Aura PCs</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Effective as of {{ date }}, these Terms and Conditions govern all purchases, services, and agreements made with Aura PCs, a company duly registered and operating within the United Kingdom, specialising in the supply, assembly, and maintenance of custom-built personal computers, pre-built systems, computer hardware components, and related IT services. All orders submitted through our official website or physical premises are subject to acceptance by Aura Pcs and availability of the requested products or services. We reserve the right, at our sole discretion, to refuse or cancel any order for reasons including but not limited to unavailability of stock, errors in pricing or product information, or suspicion of fraudulent activity. Full payment for all orders must be received prior to the commencement of any custom build or dispatch of hardware, with accepted payment methods including, but not limited to, major credit and debit cards, PayPal, and bank transfers, as explicitly stated at the point of sale. Estimated delivery dates provided at checkout or communicated through customer service are indicative and not guaranteed; Aura Pcs shall not be held liable for delays arising from courier services, postal disruptions, force majeure events, or any circumstance beyond our reasonable control. Shipping fees will be calculated at checkout unless otherwise specified in promotional offers. Customers retain the right to cancel their orders within a statutory cooling-off period of 14 days from the date of purchase, provided that cancellation for custom-built PCs is only permissible prior to the initiation of assembly or configuration processes. Returned goods must be in their original, unopened packaging and in a condition suitable for resale to qualify for a refund or exchange, and such returns must be initiated within 14 days of receipt. Custom-built PCs are sold with a limited hardware warranty valid for a period of 12 months from the date of delivery, covering defects in materials or workmanship but expressly excluding damages caused by accidental misuse, software corruption, improper installation, overclocking, or unauthorised repairs or modifications. Aura Pcs disclaims all liability for any loss, corruption, or damage to data, software, or hardware resulting from repair, upgrade, or installation services undertaken by us or third parties. Customer personal data is handled in strict accordance with applicable data protection laws including the General Data Protection Regulation (GDPR) and as detailed in our Privacy Policy, which is accessible on our website. We reserve the right to amend, update, or revise these Terms and Conditions at any time without prior notice, with updated versions being posted on our website and communicated to customers where appropriate. Continued use of our services or products following any changes constitutes acceptance of the revised terms. For any enquiries, complaints, or requests for further information regarding our Terms and Conditions or services, customers are invited to contact us via email at [YourEmail@example.com] or telephone at [Your Phone Number]. By placing an order or using our services, you acknowledge that you have read, understood, and agreed to be bound by these Terms and Conditions in their entirety.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

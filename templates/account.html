@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block main %}
+<div class="look_for_container mx-auto">
+    
+<h1 class="title">Account</h1>
+
+{% if email %}
+<p>{{ firstname }}, your account is set up with the email: {{ email }}.</p>
+<p>If you need to change your email or password, please contact support.</p>
+<a href="{{ url_for('logout') }}" >
+    <button class="btn btn-primary" type="submit"  style="width: 400px; height: 60px; margin-left: 20px; font-size: 30px;">Logout</button>
+</a>
+
+{% else %}
+<p>To access your account or to sign up please login or register.</p>
+<a href="{{ url_for('login') }}" style="text-decoration: none;">
+    <button class="btn btn-primary" style="width: 400px; height: 60px; font-size: 30px">Login</button>
+</a>
+<a href="{{ url_for('register') }}">
+    <button class="btn btn-primary" style="width: 400px; height: 60px; margin-left: 20px; font-size: 30px;">Register</button>
+</a>
+
+{% endif %}
+
+</div>
+{% endblock %}

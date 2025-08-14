@@ -1,0 +1,112 @@
+{% extends 'layout.html' %}
+
+{% block main%}
+<body>
+    <div class="look_for_container" style="width: 1500px;">
+    <h1 class="title" style="font-size: 60px;">Compare Prebuilds With Your Custom Builds</h1>
+    <div class="small-hr"></div>
+    <p>Select one prebuild from the dropdown and one custom build and then press the compare button</p>
+    <form action="/compare-customs" method="post">
+    <div style="display: flex;" class="mx-auto">
+    <select class="design-select mx-auto" name="prebuild">
+        
+        <option selected disabled value="">Prebuilds</option>
+        {% for prebuild in prebuilds %}
+        <option value="{{ prebuild.name }}">{{ prebuild.name }}</option>
+        {% endfor %}
+
+    </select>
+    <h1 class="title">VS</h1>
+    <select class="design-select mx-auto" name="custom"> 
+        
+        <option selected disabled value="">Custom Builds</option>
+        {% for custom in customs %}
+        <option value="{{ custom.name }}">{{ custom.name }}</option>
+        {% endfor %}
+
+    </select>
+    
+    </div>
+    <br>
+    <button type="submint" class="btn btn-primary" style="height: 70px; width: 300px; font-size: 35px;">Compare</button>
+    </form>
+    <br>
+    <div class="small-hr"></div>
+    <br>
+
+
+    {% if show == True %}
+    <table class="summary-table mx-auto" style="font-size: 25px; ">
+        <thead style="font-size: 40px;">
+        <th>Part</th>
+        <th>{{ prebuild_info[0]['name'] }}</th>
+        <th>{{ custom_info[0]['name'] }}</th>
+        </thead>
+        <tr>
+            <td>CPU</td>
+            <td>{{ prebuild_info[0]['cpu'] }}</td>
+            <td>{{ custom_info[0]['cpu'] }}</td>
+        </tr>
+        <tr>
+            <td>Motherboard</td>
+            <td>{{ prebuild_info[0]['motherboard'] }}</td>
+            <td>{{ custom_info[0]['motherboard'] }}</td>
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>{{ prebuild_info[0]['ram'] }}</td>
+            <td>{{ custom_info[0]['ram'] }}</td>
+        </tr>
+        <tr>
+            <td>GPU</td>
+            <td>{{ prebuild_info[0]['gpu'] }}</td>
+            <td>{{ custom_info[0]['gpu'] }}</td>
+        </tr>
+        <tr>
+            <td>Storage</td>
+            <td>{{ prebuild_info[0]['storage'] }}</td>
+            <td>{{ custom_info[0]['storage'].strip("[]',").replace("'","") }}</td>
+        </tr>
+        <tr>
+            <td>Cooler</td>
+            <td>{{ prebuild_info[0]['cooling'] }}</td>
+            <td>{{ custom_info[0]['cooler'] }}</td>
+        </tr>
+        <tr>
+            <td>Power Supply</td>
+            <td>{{ prebuild_info[0]['psu'] }}</td>
+            <td>{{ custom_info[0]['psu'] }}</td>
+        </tr>
+        <tr>
+            <td>Case</td>
+            <td>{{ prebuild_info[0]['pc_case'] }}</td>
+            <td>{{ custom_info[0]['pc_case'] }}</td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>£{{ prebuild_info[0]['price'] }}</td>
+            <td>£{{ custom_info[0]['cost'] }}</td>
+        </tr>
+    </table>
+    <br>
+    </div>
+    {% else %}
+    </div>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+{% endblock %}

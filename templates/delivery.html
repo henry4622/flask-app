@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<body style="margin-left: 42px;">
+<h1 class="title">Delivery</h1>
+<div class="medium-hr"></div>
+<div class="look_for_container" id="information">
+<p class="title">Information</p>
+<div class="small-hr"></div>
+<p>
+
+    We offer fast and reliable delivery across the majority of the UK. Once your order is confirmed, it will be carefully packed and dispatched within 1–2 working days (for prebuilds usually faster). Most deliveries arrive within 1–2 working days we aim to deliver as fast as possible. You'll receive tracking details as soon as your order is shipped, 
+    so you can monitor its progress. We also offer postcode-based eligibility, so please check if we deliver to your area before placing an order. We have teamed up with royal mail and post our items through their services. If you have any questions about delivery times or special requirements, feel free to contact our team. Be sure to check postcode eligibility before placing your order.
+    <div style="flex: 1; display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+        <img src="{{ url_for('static', filename='images/royail_mail.png') }}" alt="Delivery Image" class="link-img">
+
+        <div style="margin-left: 20px; margin-right: 20px; width: 3px; height: 100px; background-color: rgb(0, 150, 196);"></div>
+
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Delivery Image" class="logo">
+    </div>
+</p>
+</div>
+<div class="look_for_container" style="padding-bottom: 100px;" id="eligibility">
+    <h1 class="title">Eligibility</h1>
+    <div class="medium-hr"></div>
+    <p>
+        To check if you are eligible for deilvery, all you need to do is enter your postcode below and we will let you know if we deliver to your area. </p>
+    <p class="text-danger" style="font-style:italic; margin-top: -20px;">Disclaimer:    Your data will not be stored </p>
+    <div class="small-hr"></div>
+    <form action="/delivery" method="post" class="">
+        <div class="form-group text-center" style="justify-content: center; text-align: center;">
+            <input type="text" class="form-control mx-auto" id="postcode" name="postcode" placeholder="Enter your postcode" autocomplete="off" required style="width: 300px; height: 80px; font-size: 30px; text-align: center;">
+            <div class="small-hr" style="margin-bottom: -10px;"></div>
+            
+            <button type="submit" class="btn btn-primary " style="margin-top:30px; ">Check Delivery Eligibility</button>
+            {% if postcode %}
+                {% if valid_postcode == False %}
+                    <p class="danger">Invalid postcode format. Please enter a valid UK postcode.</p>
+                {% elif valid_county == False %}
+                    <p class="danger">Sorry, we do not deliver to your area.</p>
+                {% elif valid_postcode and valid_county %}
+                    <p class="success">We deliver to your postcode: {{postcode}}</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </form>
+</div>
+<nav aria-label="..." style="margin-top: 40px; justify-content: center;" class="d-flex">
+  <ul class="pagination">
+    <li class="page-item"><a href="/what_to_look_for" class="page-link">Previous</a></li>
+    <li class="page-item "><a class="page-link" href="/prebuilds">1</a></li>
+    <li class="page-item"><a class="page-link" href="/compare" aria-current="page">2</a></li>
+    <li class="page-item"><a class="page-link" href="/reccomendations">3</a></li>
+    <li class="page-item"><a class="page-link" href="/what_to_look_for">4</a></li>
+    <li class="page-item active"><a class="page-link" href="/delivery">5</a></li>
+    <li class="page-item"><a class="page-link" href="/prebuild_info">6</a></li>
+
+    <li class="page-item"><a class="page-link" href="/prebuild_info">Next</a></li>
+  </ul>
+</nav>
+    <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('delivery')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('delivery')}}#information">
+                    <button class="floating-btn2">Information</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('delivery')}}#eligibility">
+                    <button class="floating-btn2">Eligibility</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+{% endblock %}

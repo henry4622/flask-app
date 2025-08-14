@@ -1,0 +1,162 @@
+{% extends 'layout.html'%}
+{% block main %}
+
+<body style="margin-left: 44px;" id="top">
+    <h1 class="title" >What to look for when buying a pc</h1>
+    <div class="medium-hr"></div>
+    <p >
+        When buying a PC, there are several key factors to consider to ensure you get the best performance and value for your needs. Here at aura pcs we are open and honest about what we sell and what we reccomend as we want the best possible user experience. <br> <br>
+    </p>
+    <div class="medium-hr"></div>
+    <ul class="look_for_container" id="factors">
+        <h1 class="title">Key Factors</h1>
+        <div class="small-hr"></div>
+        <li class="look_for">🧠 Performance
+        Make sure the PC is powerful enough for what you need it to do — whether that's browsing the web, working, gaming, or creating content. A faster system means smoother performance and less frustration.
+        </li>
+        <li class="look_for">
+        🎮 Graphics & Visuals
+        If you’re gaming, editing videos, or using design software, you’ll want a PC that can handle visuals well. Look for strong graphics performance that matches your use.
+        </li>
+        <li class="look_for">
+        💾 Storage & Memory
+        Think about how much space you need for files, programs, and games — and how well the PC can multitask. More memory (RAM) helps things run smoother, and fast storage means quicker load times.
+        </li>
+        <li class="look_for">
+        🔌 Connectivity
+        Check for the right ports and features. Do you need USB-C? Multiple screens? Wi-Fi and Bluetooth? Make sure the PC has what you’ll actually use.
+        </li>
+        <li class="look_for">
+        ❄️ Cooling & Design
+        A good PC needs to stay cool and quiet. Whether you prefer a small, sleek case or a big gaming tower, make sure the design suits your space and won’t overheat.
+        </li>
+        <li class="look_for">
+        🔧 Future-Proofing
+        Look for a PC that you can upgrade later if needed. Being able to add more storage, memory, or a better graphics card can save you money down the line.
+        </li>
+        <li class="look_for">
+        💵 Value for Money
+        You don’t need the most expensive machine — just one that’s balanced for your needs. Know what matters most to you and spend where it counts.
+        </li>
+    </ul>
+    <div class="medium-hr"></div>
+        <ul class="look_for_container" id="parts">
+        <h1 class="title">So what do the parts do?</h1>
+        <div class="small-hr"></div>
+
+        <li class="look_for">🧠 Processor (CPU)
+            The CPU is the brain of the PC.
+            It handles all the instructions your computer runs — from opening apps to browsing the web.
+            💡 A faster CPU = quicker performance and better multitasking.
+        </li>
+        <li class="look_for">
+            🎮 Graphics Card (GPU)
+            The GPU handles images and video.
+            It’s especially important for gaming, video editing, and 3D design.
+            💡 A strong GPU makes games look better and software run smoother.
+
+
+        </li>
+        <li class="look_for">
+        🧮 RAM (Memory)
+            RAM is your PC’s short-term memory.
+            It temporarily holds the information your computer is using right now.
+            💡 More RAM = better multitasking and faster performance with lots of apps open.
+        </li>
+        <li class="look_for">
+        💾 Storage (SSD/HDD)
+            This is where all your files, games, apps, and the operating system live.
+
+            SSD = faster, quieter, more reliable
+
+            HDD = more storage for less money
+            💡 Faster storage = quicker boot times and loading.
+        </li>
+        <li class="look_for">
+        🧊 Cooling System
+        Keeps your PC cool and running efficiently.
+        Fans or liquid cooling stop parts from overheating.
+        💡 Good cooling = quieter PC and longer lifespan.
+
+
+        </li>
+        <li class="look_for">
+        🧰 Motherboard
+        The main circuit board that connects everything together.
+        All parts plug into it to work as one system.
+        💡 Think of it like the PC’s central hub.
+        </li>
+        <li class="look_for">
+            🔌 Power Supply (PSU)
+            Converts wall electricity into the right power for each part.
+            💡 A good PSU = stable performance and protection from power damage.
+
+
+        </li>
+        <li class="look_for">
+            🖥️ Case (Chassis)
+            Holds all the components and helps with cooling and airflow.
+            It also affects how big your PC is and how it looks.
+            💡 Choose a case that fits your space and has good airflow.
+
+
+        </li>
+        <li class="look_for">
+            📶 Connectivity (Wi-Fi, Ports, Bluetooth)
+            Lets you connect to the internet, plug in accessories, and pair with devices.
+            💡 Make sure the PC has the ports you need (USB, HDMI, etc.).
+        </li>
+
+    </ul>
+    <div class="look_for_container">
+        <h1 class="title" id="assistance">More Assistance</h1>
+        <div class="small-hr" style="margin-bottom: 30px; margin-top: 30px; "></div>
+        <p style="margin-bottom: -20px; margin-top: -20px">We Reccomend these three sites below, click on the images to vist the sites:</p>
+        <a class="link" href="https://tomshardware.com" target="_blank" style="font-size: 30px; margin-top: 50px;"><img src="{{ url_for ('static', filename='images/tomshardware.jpg') }}" class="link-img"></a>
+        
+
+        <a  class="link" href="https://www.techradar.com"  target="_blank" style="font-size: 30px;"><img src="{{ url_for ('static', filename='images/techradar.jpg') }}" class="link-img"></a>
+
+        <a class="link" href="https://howtogeek.com" target="_blank" style="font-size: 30px;"><img src="{{ url_for ('static', filename='images/howtogeek.png') }}" class="link-img"></a>
+    </div>
+
+      <nav aria-label="..." style="margin-top: 40px; justify-content: center;" class="d-flex">
+        <ul class="pagination">
+            <li class="page-item"><a href="/reccomendations" class="page-link">Previous</a></li>
+            <li class="page-item "><a class="page-link" href="/prebuilds">1</a></li>
+            <li class="page-item "><a class="page-link" href="/compare" aria-current="page">2</a></li>
+            <li class="page-item"><a class="page-link" href="/reccomendations">3</a></li>
+            <li class="page-item active"><a class="page-link" href="/what_to_look_for">4</a></li>
+            <li class="page-item"><a class="page-link" href="/delivery">5</a></li>
+            <li class="page-item"><a class="page-link" href="/prebuild_info">6</a></li>
+
+            <li class="page-item"><a class="page-link" href="/deliervy">Next</a></li>
+        </ul>
+    </nav>
+    <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('what_to_look_for')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('what_to_look_for')}}#factors">
+                    <button class="floating-btn2">Factors</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('what_to_look_for')}}#parts">
+                    <button class="floating-btn2">Parts</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('what_to_look_for')}}#assistance">
+                    <button class="floating-btn2">Assistance</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+{% endblock %}

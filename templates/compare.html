@@ -1,0 +1,118 @@
+{% extends 'layout.html'%}
+
+{% block main %}
+    <body>
+        <h1 class="title">Compare Different Prebuilds </h1>
+
+        <div class="medium-hr"></div>
+        <p> 
+            Select the prebuilds you want to compare. You can hide or show them using the buttons below. <br> <br>
+            <span class="text-danger">Note: The comparison table will only show the selected PCs.</span>
+        </p>
+            <div class="small-hr"></div>
+            <p>
+            Scroll horizontally for more options
+            </p>
+            
+      
+        <div class="row flex-nowrap g-0 overflow-auto w-170" style="margin-left: 42px;">
+            {% for pc in pcs %}
+            <div class="col-auto p-0">
+              <div class="card card-medium d-flex flex-column" style="width: 105px; height: 270px;">
+                <img src="{{ url_for('static', filename='images/' + pc.name + '.png') }}" class="card-img-top card-img-small" alt="{{pc.name}}">
+          
+                <div class="card-body d-flex flex-column justify-content-between p-2">
+                  <div style="min-height: 100px;">
+                    <h5 class="card-title-small text-center">{{ pc.name }}</h5>  
+                    <div class="x-small-hr"></div>
+                    <p class="card-title-small text-center">{{ pc.price }}</p>
+                    <div class="x-small-hr"></div>
+                  </div>
+          
+                  <div class="btn-container d-flex flex-column gap-2 mt-auto">
+                    <form action="/compare" method="post">
+                      <button type="submit" class="btn btn-primary btn-sm w-100" id="show{{pc.id}}" name="hide{{pc.id}}" value="hide">Hide</button>
+                    </form>
+                    <form action="/compare" method="post">
+                      <button type="submit" class="btn btn-primary btn-sm w-100" id="show{{pc.id}}" name="show{{pc.id}}" value="show">Show</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+
+
+
+          
+          
+  <div class="table-container w-98" style="margin-left: 52px">
+    <table class="table info-table w-1">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>CPU</th>
+          <th>GPU</th>
+          <th>RAM</th>
+          <th>Storage</th>
+          <th>Cooling</th>
+          <th>Motherboard</th>
+          <th>PSU</th>
+          <th>Use</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if selected_pcs %}
+        {% for pc in selected_pcs %}
+        <tr>
+          <td>{{pc.name}}</td>
+          <td>{{pc.cpu}}</td>
+          <td>{{pc.gpu}}</td>
+          <td>{{pc.ram}}</td>
+          <td>{{pc.storage}}</td>
+          <td>{{pc.cooling}}</td>
+          <td>{{pc.motherboard}}</td>
+          <td>{{pc.psu}}</td>
+          <td>{{pc.use }}</td>
+          <td>{{pc.price}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+          <td colspan="10" class="text-center">No PCs selected for comparison.</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+
+  <nav aria-label="..." style="margin-top: 40px; justify-content: center;" class="d-flex">
+  <ul class="pagination">
+    <li class="page-item"><a href="/prebuilds" class="page-link">Previous</a></li>
+    <li class="page-item "><a class="page-link" href="/prebuilds">1</a></li>
+    <li class="page-item active "><a class="page-link" href="/compare" aria-current="page">2</a></li>
+    <li class="page-item"><a class="page-link" href="/reccomendations">3</a></li>
+    <li class="page-item"><a class="page-link" href="/what_to_look_for">4</a></li>
+    <li class="page-item"><a class="page-link" href="/delivery">5</a></li>
+    <li class="page-item"><a class="page-link" href="/prebuild_info">6</a></li>
+
+    <li class="page-item"><a class="page-link" href="/reccomendations">Next</a></li>
+  </ul>
+</nav>
+
+    <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('compare')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+        </ul>
+    </div> 
+</body>
+{% endblock %}

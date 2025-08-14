@@ -1,0 +1,180 @@
+{% extends 'layout.html' %}
+{% block main %}
+
+<nav style="--bs-breadcrumb-divider: '>'; color: white;" aria-label="breadcrumb" class="d-flex justify-content-center ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page"><a href="/basket">Basket</a></li>
+    <li class="breadcrumb-item">Shippinga</li>
+    <li class="breadcrumb-item">Payment</li>
+
+  </ol>
+</nav>
+<div class="look_for_container" style="width: 1500px;">
+<h1 class="title">{% if firstname %} {{ firstname}}'s Basket {% else %} Basket {% endif %}</h1>
+<div class="small-hr"></div>
+<br>
+
+{% if products %}
+    <table class="summary-table mx-auto " style="font-size: 25px;">
+        <thead style="font-size: 35px;">
+            <th>Item</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </thead>
+        {% for item in products %}
+
+            <tr style="height: 10px;">
+                <td style="width: 400px; height: 10px;"> 
+              <button type="button" class="btn btn-primary text-align: right;" data-bs-toggle="modal" data-bs-target="#Modal{{ item.id }}" class="font-size: 40px;">
+                <p style="font-size: 35px; margin-top: -25px; margin-bottom: -25px;">{{ item.name }}</p>
+              </button>
+              <div class="modal fade" id="Modal{{ item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog mx-auto">
+                  <div class="modal-content mx-auto" style="width: 1000px; height: 900px;">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-7 mx-auto" id="exampleModalLabel" style="color: black">{{ item.name}}</h1>
+
+                    </div>
+                    <div class="modal-body">
+                      <table class="table info-table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Component</th>
+                              <th scope="col">Details</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>CPU</td>
+                              <td>{{ item.cpu }}</td>
+                            </tr>
+                            <tr>
+                              <td>GPU</td>
+                              <td>{{ item.gpu }} </td>
+                            </tr>
+                            <tr>
+                              <td>RAM</td>
+                              <td>{{ item.ram }} </td>
+                            </tr>
+                            <tr>
+                              <td>Storage</td>
+                              <td>{{ item.storage }}</td>
+                            </tr>
+                            <tr>
+                              <td>Motherboard</td>
+                              <td>{{ item.motherboard }}</td>
+                            </tr>
+                            <tr>
+                              <td>Power Supply</td>
+                              <td>{{ item.psu }}</td>
+                            </tr>
+                            <tr>
+                              <td>Cooling</td>
+                              <td>{{ item.cooler }}</td>
+                            </tr>
+                            <tr>
+                              <td>Case</td>
+                              <td>{{ item.pc_case }}</td>
+                            </tr>
+                            <tr>
+                              <td>Operating System</td>
+                              <td>Windows 11 Pro</td>
+                            </tr>
+                            <tr>
+                              <td>Warranty</td>
+                              <td>3 Years On-Site Support</td>
+                            </tr>
+                            <tr>
+                              <td>Cost</td>
+                              <td>{{ item.price }}</td>
+                            </tr>
+
+                          </tbody>
+                      </table>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal" style="height: 60px; width: 200px;"><h2>Close</h2></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+ 
+                </td>
+                <td>{{ item.type }}</td>
+                <td>£{{ item.price }} </td>
+                <div  style="display: flex; align-items: center; gap: 8px;">
+                <td>{{ item.quantity }} 
+                        <form action="/add1_to_basket" method="post" style="display: inline;">
+
+                            <input type="hidden" name="product_name" value="{{ item.name }}">
+
+                            <button style="padding: 0; margin-left:20px; margin-top: 0px; margin-right: 10px;  border: none; background: none; cursor: pointer; width: 30px; text-align: right" type="submit">
+                                <img src="{{ url_for('static', filename='images/add.png') }}" style="height: 30px; width: auto; display: block; " alt="Remove Item">
+                            </button>
+                            
+                        </form>
+
+                        {% if item.quantity > 1 %}
+
+                        <form action="/minus1_to_basket" method="post" style="display: inline;">
+
+                            <input type="hidden" name="product_name" value="{{ item.name }}">
+
+                            <button style="padding: 0; margin: 0; border: none; background: none; cursor: pointer; width: 30px; text-align: right" type="submit">
+                                <img src="{{ url_for('static', filename='images/minus.png') }}" style="height: 30px; width: auto; display: block;" alt="Remove Item">
+                            </button>
+                            
+                        </form>
+                        {% else %}
+                        <form action="/minus1_to_basket" method="post" style="display: inline;">
+
+                            <input type="hidden" name="product_name" value="{{ item.name }}">
+
+                            <button style="padding: 0; margin: 0; border: none; background: none; cursor: pointer; width: 30px; text-align: right" type="submit" disabled>
+                                <img src="{{ url_for('static', filename='images/minus-grey.png') }}" style="height: 30px; width: auto; display: block;" alt="Remove Item">
+                            </button>
+                            
+                        </form>
+                        {% endif %}
+
+                </td>
+                </div>
+                <td>£{{ item.price *( item.quantity)}} </td>
+                <td>
+                    <form action="/remove_from_basket" method="post" style="display: inline;">
+
+                        <input type="hidden" name="product_name" value="{{ item.name }}">
+
+                        <button style="background: none; border: none; cursor: pointer;" type="submit">
+                            <img src="{{ url_for('static', filename='images/trash.png') }}" style="height: 30px; width: auto; margin-left: 20px;" alt="Remove Item">
+                        </button>
+
+                    </form>
+
+                </td>
+            </tr>
+
+        {% endfor %}
+        <tfoot>
+            <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
+            <td><strong>£ {{ total_price }} </strong></td>
+        </tfoot>
+    </table>
+    <br>
+    <div class="medium-hr"></div>
+    <form action="/checkout-shipping" method="post">
+        <button type="submit" class="btn btn-primary" style="width: 500px; height: 60px; font-size: 30px; margin-top: 40px;">Checkout</button>
+    </form>
+    </div>
+{% else %}
+    <div class="look_for_container">
+    <p>Your basket is empty.</p>
+    <p>Check out our <a href="/prebuilds" class="link">products</a> to find something you like!</p>
+    <img src="{{ url_for('static', filename='images/Aura Titan.png') }}" style="width: 100%; max-width: 600px; height: auto; margin-top: 20px;" alt="Aura Titan" />
+    </div>
+{% endif %}
+
+{% endblock %}
+

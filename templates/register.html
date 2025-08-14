@@ -1,0 +1,138 @@
+{% extends 'layout.html' %}
+
+
+{% block main%}
+
+
+<body>
+    <div class="login-div" >
+        <form action="/register" method="post" class="login-form row g-3 needs-validation">
+            <h1 class="title">
+                Register
+            </h1>
+            <div class="medium-hr"></div>
+
+            <div class="input-wrapper">
+                <input type="text" name="firstname" placeholder="First name" required class="login-input" autofill="off" autocomplete="off">
+                {% if firstname_error %}
+                    <p class="password-message">Can only contain letters</p>
+                {% endif %}
+            </div>
+            
+            <div class="small-hr"></div>
+
+            <div class="input-wrapper">
+                <input type="text" name="surname" placeholder="Surname" required class="login-input" autofill="off" autocomplete="off">
+                {% if surname_error %}
+                    <p class="password-message">Can only contain letters</p>
+                {% endif %}
+            </div>
+
+            <div class="small-hr"></div>
+
+            <div class="input-wrapper">
+                <input type="text" name="email" placeholder="Email" required class="login-input" autofill="off" autocomplete="off">
+                {% if email_error %}
+                    <p class="password-message">Invalid Email</p>
+                {% endif %}
+                {% if email_error2 %}
+                    <p class="password-message">Email Already Registered Click <a href="/login">HERE</a> to login</p>
+                {% endif %}
+            </div>
+
+            <div class="small-hr"></div>
+            
+            <div class="input-wrapper-password">
+                <div class="password-container">
+                    <input type="password" name="password" placeholder="Password" required class="login-input" id="password" autofill="off"  autocomplete="off">
+                    <button id='togglepassword' class="icon-button" type="button">
+                        <img src="{{ url_for ('static', filename='images/eye.png')}}" alt="eye" id="eye-icon" class="eye-icon">
+                    </button>
+                </div>
+
+
+                <div class="password-container">
+                    <input type="password" name="password2" placeholder="Confirm Password" required class="login-input" id="password2" autofill="off"  autocomplete="off">
+                    <button id='togglepassword' class="icon-button" type="button">
+                        <img src="{{ url_for ('static', filename='images/eye.png')}}" alt="eye" id="eye-icon2" class="eye-icon">
+                    </button>
+                </div>
+                {% if password_error == True %}
+                    <p class="password-message">Passwords Do Not match</p>
+                {% endif %}
+            </div>
+           
+
+            <div class="small-hr"></div>
+            
+
+                <div class="birthday-input" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                    <input type="text" id="day" maxlength="2" placeholder="DD" required name="day" autocomplete="off"/>
+                    <span>|</span>
+                    <input type="text" id="month" maxlength="2" placeholder="MM" required name="month" autocomplete="off"/>
+                    <span>|</span>
+                    <input type="text" id="year" maxlength="4" placeholder="YYYY" required name="year" autocomplete="off"/>
+                </div>
+                {% if birth_error == True %}
+                <p class="password-message">Invalid Birthday</p>
+                {% endif %}
+
+
+
+            <div class="medium-hr"></div>
+            
+                <button type="submit" class="btn login-button" style=" margin-bottom: 50px;">Register</button>
+        </form>
+            
+    </div>
+</body>
+<script>
+    const password = document.getElementById('password');
+    const icon = document.getElementById('eye-icon');
+
+    icon.addEventListener("mousedown", () => {
+        password.type = "text";
+        icon.src = "{{ url_for ('static', filename='images/eye-closed.png')}}";
+
+        
+      });
+    
+      icon.addEventListener("mouseup", () => {
+        password.type = "password";
+        icon.src = "{{ url_for ('static', filename='images/eye.png')}}";
+      });
+    
+
+      icon.addEventListener("mouseleave", () => {
+        password.type = "password";
+        icon.src = "{{ url_for ('static', filename='images/eye.png')}}";
+        
+    });
+
+    const password2 = document.getElementById('password2');
+    const icon2 = document.getElementById('eye-icon2');
+
+    icon2.addEventListener("mousedown", () => {
+        password2.type = "text";
+        icon2.src = "{{ url_for ('static', filename='images/eye-closed.png')}}";
+      });
+    
+      icon2.addEventListener("mouseup", () => {
+        password2.type = "password"; 
+        icon2.src = "{{ url_for ('static', filename='images/eye.png')}}";
+      });
+    
+
+      icon2.addEventListener("mouseleave", () => {
+        password2.type = "password";
+        icon2.src = "{{ url_for ('static', filename='images/eye.png')}}";
+    });
+
+
+
+  </script>
+
+
+
+
+{% endblock %}

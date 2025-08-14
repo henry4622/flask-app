@@ -1,0 +1,289 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+
+
+
+
+
+
+    {% if filtered %}
+    <p>The following filters have been applied {{ [cpuFilter, priceFilter, categoryFilter, storageFilter, gpuFilter, ramFilter] |join(', ')  }}</p>
+    {% endif %}
+    <h1 class="title">PreBuilds</h1>
+
+    <div class="medium-hr"></div>
+
+    <p>Explore our range of high performance for cost PCs. If you want any extra info or need help choosing your PC visit the other pages in the PreBuild section to explore.</p>
+
+      
+<label style="font-size: 15px; ">If you would like to filter the PCs to your preferences you may do here:</label> <br>
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Filter the PCs
+</button>
+
+    <div class="modal modal-xl fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form action="/filter_pcs" method="post">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="mb-4">
+                  <select id="cpuFilter" name="cpuFilter" class="form-select w-auto d-inline-block">
+                    <option value="all">All CPUs</option>
+                    <option value="i3">Intel i3</option>
+                    <option value="i5">Intel i5</option>
+                    <option value="i7">Intel i7</option>
+                    <option value="ryzen">AMD Ryzen</option>
+                  </select>
+                
+                  <select id="priceFilter" class="form-select w-auto d-inline-block ms-2" name="priceFilter">
+                    <option value="all">All Prices</option>
+                    <option value="low">Under £700</option>
+                    <option value="mid">£700–£1750</option>
+                    <option value="high">Over £1750</option>
+                  </select>
+
+                  <select id="categoryFilter" class="form-select w-auto d-inline-block ms-2" name="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="office">Office</option>
+                    <option value="gaming">Gaming</option>
+                  </select>
+
+                  <select id="storageFilter" class="form-select w-auto d-inline-block ms-2" name="storageFilter">
+                    <option value="all">All Storage</option>
+                    <option value="512"> 512GB</option>
+                    <option value="1tb">1TB</option>
+                    <option value="2tb">2TB</option>
+                    <option value="4tb">4TB</option>
+                    <option value="nvme">SSD</option>
+                    <option value="hdd">HDD</option>
+                  </select>
+
+                  <select id="gpuFilter" class="form-select w-auto d-inline-block ms-2" name="gpuFilter">
+                    <option value="all">All GPUS</option>
+                    <option value="RTX 50">NVIDIA 50 Series</option>
+                    <option value="RTX 40">NVIDIA 40 Series</option>
+                    <option value="RTX 30">NVIDIA 30 Series</option>
+                    <option value="amd">AMD</option>
+                    <option value="integrated">Integrated Graphics</option>
+                  </select>
+
+                  <select id="ramFilter" class="form-select w-auto d-inline-block ms-2" name="ramFilter">
+                    <option value="all">All RAM</option>
+                    <option value="ddr5">DDR5</option>
+                    <option value="ddr4">DDR4</option>
+                    <option value="8gb">8GB</option>
+                    <option value="16gb">16GB</option>
+                    <option value="32gb">32GB</option>
+                    <option value="64gb">64GB</option>
+                  </select>
+                  
+                  </div>
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary ms-2" id="filterButton1">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    {% if error %}
+      {{ error }}
+    {% endif %}
+
+
+
+<div class="container my-4 look_for_container" style="padding-left: 50px; margin-left: 22px;">
+  <h1 class="title">Explore our range</h1>
+  <div class="small-hr"></div>
+  <div class="row">
+  {% for pc in pcs %}
+    <div class="col-md-4 mb-4 d-flex" id="{{pc.name}}">
+      <div class="card h-100 w-100" >
+          <img src="{{ url_for('static', filename='images/' + pc.name + '.png') }}" class="card-img-top" alt="{{pc.name}}">
+          <div class="card-body">
+
+            
+            <h5 class="card-title">{{pc.name}} <h2 class="title_2">{{ pc.use }}</h2></h5>  
+
+
+            <div class="small-hr"></div>
+
+            <p class="card-text">{{ pc.description }} </p>
+
+            <div class="small-hr"></div>
+
+            <p class="cost">{{ pc.price }}</p>
+
+            <div class="small-hr"></div>
+
+            <div class="btn-container">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal{{ pc.id }}">
+                More Details
+              </button>
+              <div class="modal fade" id="Modal{{pc.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-7" id="exampleModalLabel">{{pc.name}}</h1>
+
+                    </div>
+                    <div class="modal-body">
+                      <table class="table info-table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Component</th>
+                              <th scope="col">Details</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>CPU</td>
+                              <td>{{ pc.cpu }}</td>
+                            </tr>
+                            <tr>
+                              <td>GPU</td>
+                              <td>{{ pc.gpu }} </td>
+                            </tr>
+                            <tr>
+                              <td>RAM</td>
+                              <td>{{ pc.ram }} </td>
+                            </tr>
+                            <tr>
+                              <td>Storage</td>
+                              <td>{{ pc.storage }}</td>
+                            </tr>
+                            <tr>
+                              <td>Motherboard</td>
+                              <td>{{ pc.motherboard }}</td>
+                            </tr>
+                            <tr>
+                              <td>Power Supply</td>
+                              <td>{{ pc.psu }}</td>
+                            </tr>
+                            <tr>
+                              <td>Cooling</td>
+                              <td>{{ pc.cooling }}</td>
+                            </tr>
+                            <tr>
+                              <td>Case</td>
+                              <td>{{ pc.pc_case }}</td>
+                            </tr>
+                            <tr>
+                              <td>Operating System</td>
+                              <td>Windows 11 Pro</td>
+                            </tr>
+                            <tr>
+                              <td>Warranty</td>
+                              <td>3 Years On-Site Support</td>
+                            </tr>
+
+                          </tbody>
+                      </table>
+                      <p class="cost">{{ pc.price }} </p>
+                    </div>
+                    <div class="modal-footer">
+                      <form action="/add_to_basket" method="post">
+                        <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal" id="" name="prebuild" value="{{pc.name}}"data-bs-toggle="popover" data-bs-placement="right"
+                        data-bs-custom-class="custom-popover"
+                        data-bs-title="Success"
+                        data-bs-content="Your item has been successfully added to the basket">Add To Basket</button>
+                      </form>
+                      <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form action="/add_to_basket" method="post">
+                <button type="submit button" class="btn btn-primary ms-auto" data-bs-dismiss="modal" id="liveToastBtn{{ pc.id }}" name="prebuild" value="{{ pc.name }}" >Add To Basket</button>
+              </form>
+              <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="liveToast{{ pc.id }}">
+                  <div class="toast-body">
+                    {{ pc.name }} successfully added to basket.
+                    <div class="mt-2 pt-2 border-top">
+                      <a href="/basket">
+                      <button type="button" class="btn btn-primary btn-sm">View Basket</button>
+                      </a>
+                      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+</div>
+
+    <script>
+      for (let i = 1; i <= 12; i++) {
+        const toastTrigger = document.getElementById(`liveToastBtn${i}`);
+        const toastLiveExample = document.getElementById(`liveToast${i}`);
+
+        if (toastTrigger && toastLiveExample) {
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+          toastTrigger.addEventListener('click', () => {
+            toastBootstrap.show();
+          });
+        }
+}
+
+      </script>
+
+<nav aria-label="..." style="margin-top: 40px; justify-content: center;" class="d-flex">
+  <ul class="pagination">
+    <li class="page-item disabled"><a href="#" class="page-link">Previous</a></li>
+    <li class="page-item active"><a class="page-link" href="/prebuilds">1</a></li>
+    <li class="page-item"><a class="page-link" href="/compare" aria-current="page">2</a></li>
+    <li class="page-item"><a class="page-link" href="/reccomendations">3</a></li>
+    <li class="page-item"><a class="page-link" href="/what_to_look_for">4</a></li>
+    <li class="page-item"><a class="page-link" href="/delivery">5</a></li>
+    <li class="page-item"><a class="page-link" href="/prebuild_info">6</a></li>
+
+    <li class="page-item"><a class="page-link" href="/compare">Next</a></li>
+  </ul>
+</nav>
+    <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('prebuilds')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('prebuilds')}}#Aura Titan">
+                    <button class="floating-btn2">Aura Range</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('prebuilds')}}#Strata Summit">
+                    <button class="floating-btn2">Strata Range</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}

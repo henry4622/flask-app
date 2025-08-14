@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<body style="margin-left: 44px;" id="top">
+    <nav style="--bs-breadcrumb-divider: '>'; color: white; margin-top: -60px; margin-bottom: -60px;" aria-label="breadcrumb" class="d-flex justify-content-center ">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/design-cpu">CPU</a></li>
+        <li class="breadcrumb-item active"><a href="/design-motherboard">Motherboard</a></li>
+        <li class="breadcrumb-item"> RAM</li>
+        <li class="breadcrumb-item"> GPU</li>   
+        <li class="breadcrumb-item"> Storage</li>
+        <li class="breadcrumb-item"> Cooler</li>
+        <li class="breadcrumb-item"> PSU</li>
+        <li class="breadcrumb-item">Case</li>
+        <li class="breadcrumb-item">Name</li>
+
+
+    </ol>
+    </nav>
+    <div class="look_for_container">
+
+    <h1 class="title" style="font-size: 65px;">Step 2: Choosing Your Motherboard</h1>
+    <div class="small-hr"></div>
+    <p>This is the second stage to designing your PC. All motherboards have been filtered so that only the ones compatible with your CPU - {{ cpu }} show. </p>
+
+
+    <form action="/design-motherboard" method="POST">
+        <select class="design-select" name="motherboard" id="motherboard" required style="width: 870px;">
+            <option selected disabled value="">Choose your Motherboard</option>
+            {% for motherboard in motherboards %}
+            <option value="{{ motherboard.component_name }}">{{ motherboard.component_name }} - {{ motherboard.ram_type }} - {{ motherboard.factor }} - £{{ motherboard.retail_price }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <br>
+        <div class="medium-hr"></div>
+        <br>
+        <br>
+        <button class="btn btn-primary" style="height: 100px; width: 400px; font-size: 40px; border-radius: 20px;" type="submit">Next</button>
+    </form>
+    </div>
+
+    <br>
+
+    <div class="look_for_container mx-auto justify-content-center align-items-center ">
+    <h1 class="title" id="build">PC build so far: </h1>
+    <div class="small-hr"></div>
+    <br>
+    <table class="summary-table mx-auto" style="height: 200px; font-size: 20px; width: 900px; margin-bottom: 50px;">
+        <thead>
+            <th></th>
+            <th>Part</th>
+            <th>Price</th>
+        </thead>
+        <tr>
+            <td>CPU</td>
+            <td>{{ cpu }}</td>
+            <td>£{{ cpu_price }}</td>
+        </tr>
+        <tfoot>
+            <td>Total Cost</td>
+            <td></td>
+            
+            <td>£{{ cpu_price }}</td>
+        </tfoot>
+    </table>
+
+
+      <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('design_motherboard')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('design_motherboard')}}#build">
+                    <button class="floating-btn2">Build So Far</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+
+
+{% endblock %}

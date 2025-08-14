@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<body style="margin-left: 0px;">
+
+    <div class="look_for_container" style="width: 1500px;">
+    <h1 class="title">Build Summary</h1>
+    <p>This is now the stage where you can decide to save the build or restart or checkout, the followin table shows the different parts that make up your now fully designed PC and how they are compatible. You can only save up to 3 different builds.</p>
+
+    <table class="summary-table mx-auto" style="font-size: 22px;">
+
+        <thead>
+            <th style="font-size:35px;">{{ pc_name }}</th>
+            <th>Part</th>
+            <th>Extra Info</th>
+            <th>Price</th>
+        </thead>
+        <tr>
+            <td>CPU</td>
+            <td>{{ cpus[0]['component_name'] }}</td>
+            <td>{{ cpus[0]['socket_type'] }}</td>
+            <td>£{{ cpus[0]['retail_price'] }}</td>
+        </tr>
+        <tr>
+            <td>Motherboard</td>
+            <td>{{ motherboards[0]['component_name'] }}</td>
+            <td>{{ motherboards[0]['socket_type'] }} - {{ motherboards[0]['ram_type'] }} - {{ motherboards[0]['factor'] }}</td>
+            <td>£{{ motherboards[0]['retail_price'] }}</td>        
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>{{ rams[0]['component_name'] }}</td>
+            <td>{{ rams[0]['ram_type'] }}</td>
+            <td>£{{ rams[0]['retail_price'] }}</td>
+
+        </tr>
+        <tr>
+            <td>GPU</td>
+            <td>{{ gpus[0]['component_name'] }}</td>
+            <td>{{ gpus[0]['ram_type'] }}</td>
+            <td>£{{ gpus[0]['retail_price'] }}</td>
+
+        </tr>
+        <tr>
+            <td>Storage</td>
+            <td><ul>{% for store in storage %} {% if store != "" %} - {{ store }}<br> {% else %}  {% endif %} {% endfor %}</ul></td>
+            <td><ul>{% for store in storage_types %} - {{ store }} <br> {% endfor %} </ul></td>
+            <td>£{{ storage_price }} </td>
+        </tr>
+        <tr>
+            <td>CPU Cooler</td>
+            <td>{{ coolers[0]['component_name'] }}</td>
+            <td>{{ coolers[0]['socket_type'] }}</td>
+            <td>£{{ coolers[0]['retail_price'] }}</td>
+
+        </tr>
+        <tr>
+            <td>Power Supply</td>
+            <td>{{ psus[0]['component_name'] }}</td>
+            <td>{{ psus[0]['wattage'] }}W</td>
+            <td>£{{ psus[0]['retail_price'] }}</td>
+
+        </tr>
+        <tr>
+            <td>Case</td>
+            <td>{{ cases[0]['component_name'] }}</td>
+            <td>{{ cases[0]['factor'] }}</td>
+            <td>£{{ cases[0]['retail_price'] }}</td>
+        </tr>
+        <tfoot>
+            <td colspan="3" style="text-align: left; padding-left: 30px;">Total Cost</td>
+            
+            <td>£{{ psus[0]['retail_price'] + coolers[0]['retail_price'] + gpus[0]['retail_price'] + cpus[0]['retail_price'] + rams[0]['retail_price'] + motherboards[0]['retail_price'] + storage_price + cases[0]['retail_price']}}</td>
+        </tfoot>
+    </table>
+    <br>
+    <div class="medium-hr"></div>
+    <br>
+    <div style="display: flex;" class="mx-auto">
+        <form action="/design-save" method="post" class="mx-auto">
+            <button class="btn btn-primary" style="height: 100px; width: 350px; font-size: 40px; border-radius: 20px;  margin-right: 20px;" type="submit">Save Build</button>
+        </form>
+        <form action="/custom-checkout" method="post" class="mx-auto">
+            <button class="btn btn-primary" style="height: 100px; width: 350px; font-size: 40px; border-radius: 20px;  margin-right: 20px;" type="submit">Checkout</button>
+        </form>
+        <form action="/design" method="post" class="mx-auto">
+            <button class="btn btn-primary" style="height: 100px; width: 350px; font-size: 40px; border-radius: 20px; margin-right: 20px;" type="submit">Reset Build</button>
+        </form>
+    </div>
+</body>
+
+
+
+{% endblock %}

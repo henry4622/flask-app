@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<div class="look_for_container">
+<h1 class="title">Your Orders</h1>
+<div class="small-hr"></div>
+{% if orders %}
+<table class="summary-table mx-auto" style="width: 1000px; font-size: 25px;">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Items</th>
+            <th>Total Cost</th>
+            <th>Shipping Method</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.date }}</td>
+            <td>{{ order.items }}</td>
+            <td>£{{ order.cost }}</td>
+            <td>{{ order.shipping }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table> 
+
+{% else %}
+<p>No orders found.</p>
+{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,251 @@
+  <a id="top"></a>
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block main %}
+    <head>
+
+    </head>
+    {% if message == "order" %}
+    <div class="alert alert-success" role="alert">
+        <p style="color: black;">Your order has been placed successfully! Click<a href="/orders"> here </a> to view your orders.</p>
+
+    </div>
+    {% endif %}
+    <h1 class="title">Welcome to AURA PCs
+      {% if name %}
+
+        {{ name }}
+
+      {% endif %}
+    </h1>
+
+    <h2 class="title_2">Where performance meets perfection</h2>
+    <br>
+    <p>
+      We specialize in crafting high-quality, custom-built PCs using the latest cutting-edge components. Whether you're a gamer, creator, or power user, our expert builders ensure every machine is designed for maximum performance, reliability, and precision. Build your dream PC with us today!
+    </p>
+
+    <div class="hr"></div>
+
+    <!-- slideshow -->
+    <section class="home-section">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='images/slide_1.jpg') }}" class="d-block w-100" alt="...">
+            <div class="caption-div">
+                <p>Crafting high-performance, quality-built PCs tailored for power, precision, and perfection.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/slide_2.jpg') }}" class="d-block w-100" alt="...">
+            <div class="caption-div">
+                <p>Building with the latest cutting-edge components for unmatched performance and reliability.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="{{ url_for('static', filename='images/slide_3.jpg') }}" class="d-block w-100" alt="...">
+            <div class="caption-div">
+                <p>Expertly built by passionate professionals who bring your dream PC to life.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr"></div>
+
+    <section id="about" class="home-section">
+      <h1 class="title" id="about"> About us </h1>
+
+      <div class="medium-hr"></div>
+
+      <p>
+        AURA PCs was born from pure passion—founded by a dedicated PC enthusiast who started building computers at a young age, driven by a love for performance, precision, and innovation. What began as a hobby soon grew into an obsession: crafting powerful, high-quality machines that push the limits of technology. At AURA PCs, we believe that every build should be more than just a collection of parts—it should be a masterpiece of engineering, tailored to the unique needs of gamers, creators, and power users alike. Our ethos is simple: no compromises, no shortcuts—just expertly crafted, high-performance PCs built with the latest cutting-edge components and an unwavering commitment to quality. Whether you're chasing ultra-smooth gaming, high-end content creation, or next-level productivity, AURA PCs is here to bring your dream rig to life
+      </p>
+      <img src="{{ url_for('static', filename='images/about.jpg') }}" alt="About us" class="about-img">
+    </section>
+
+
+    <div class="hr"></div>
+
+
+    <section id="services" class="home-section">
+      <h1 class="title">Our Services</h1>
+
+      <div class="medium-hr"></div>
+
+
+
+
+
+        <div class="services-container">
+          <div class="services-div">
+            <a class="link" href="#">
+              <h1 class="title_3">Choose Your Own Parts Build</h1>
+            </a>
+            <p>
+              Customize your PC by selecting each part according to your needs and preferences. We assemble it for you to ensure top performance and compatibility.
+            </p>
+              <img src="{{ url_for('static', filename='images/parts.jpg') }}" class="services-img">
+          </div>
+          
+          <div class="vertical-divider"></div>
+
+          <div class="services-div">
+            <a class="link" href="#">
+              <h2 class="title_3">Prebuilt Options</h2>
+            </a>
+            <p>
+              Choose from a selection of expertly crafted prebuilt PCs designed for specific use cases, such as gaming, content creation, and professional work.
+            </p>
+            <img src="{{ url_for('static', filename='images/Aura Blaze.png') }}" class="services-img">
+          </div>
+        </div>
+
+        <div class="large-hr"></div>
+
+        <div class="services-container">
+
+          <div class="services-div">
+            <a class="link" href="#">
+              <h2 class="title_3">Special Requests</h2>
+            </a>
+            <p>
+              Get custom designs, unique case mods, and advanced cooling solutions tailored to your needs, making your PC both visually stunning and performance-ready. 
+            </p>
+            <img src = "{{ url_for('static', filename='images/Strata Summit.png') }}" class="services-img">
+          </div>
+
+          <div class="vertical-divider"></div>
+
+          <div class="services-div">
+            <a class="link" href="#">
+              <h2 class="title_3">Repairs & Maintenance</h2>
+            </a>
+            <p>
+              We offer repair and maintenance services to keep your PC running smoothly, including hardware upgrades, software troubleshooting, and system optimization.
+            </p>
+            <img src = "{{ url_for('static', filename='images/services-repair.jpg') }}" class="services-img">
+          </div>
+        </div>
+
+
+
+
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="home-section" id="featured">
+      <h1 class="title">
+        Featured Builds
+      </h1>
+
+      <div class="medium-hr"></div>
+
+      <p>
+        With over 100 customization combinations and more than 20 expertly crafted prebuilt options, you’ll find the perfect build to match your needs. Here are a few of our top choices:
+      </p>
+
+      <img src="{{url_for('static', filename='images/pc_1.webp')}}" alt="PC 1" class="featured-img">
+      <img src="{{ url_for ('static', filename='images/pc_2.webp')}}" alt="PC 2" class="featured-img">
+      <img src="{{ url_for ('static', filename='images/pc_3.webp')}}" alt="PC 3" class="featured-img">
+      <img src="{{ url_for ('static', filename='images/pc_4.webp')}}" alt="PC 4" class="featured-img">
+      
+      <div class="home-div">
+        <button class="btn d-block mx-auto view-all-builds">View All Builds</button>
+      </div>
+
+
+    </section>  
+
+    <div class="hr"></div>
+
+    <section class="home-section" id="reviews">
+      <h1 class="title">
+        Customer Reviews
+      </h1>
+      <div class="medium-hr"></div>
+      <P>
+        Customer feedback for AURA PCs has been overwhelmingly positive, with users praising the exceptional performance, build quality, and reliability of our custom systems. Gamers, creators, and professionals alike appreciate the attention to detail, premium components, and expert craftsmanship that go into every build. Many customers highlight the seamless experience, from ordering to setup, 
+        and the outstanding customer support that ensures satisfaction at every step. Industry experts and enthusiasts recognize AURA PCs as a trusted brand for high-performance, cutting-edge systems designed to exceed expectations. 
+      </P> 
+      
+      <div class="large-hr">  </div>
+      
+
+      <p class="review">
+        "Aura PCs truly exceeded my expectations! The custom-built PC they created for me runs like a dream. Fast, reliable, and the design is sleek. I couldn’t be happier with my purchase!" – Alex T.
+      </p>
+      <img src="{{ url_for('static', filename='images/5-stars.png') }}" alt="Customer Reviews" class="review-img">
+
+      <div class="small-hr"></div>
+
+      <p class="review">
+        "I’ve been using my Aura PC for a few months now, and I’m blown away by the performance. Whether I’m gaming or working on graphic design projects, it handles everything with ease. Highly recommend!" – Sarah L.
+      </p>
+      <img src="{{ url_for('static', filename='images/5-stars.png') }}" alt="Customer Reviews" class="review-img">
+
+      <div class="small-hr"></div>
+
+      <p class="review">
+        "From start to finish, my experience with Aura PCs was top-notch. Their team was incredibly helpful in guiding me to the perfect specs for my needs. Delivery was on time, and everything was set up perfectly!" – John M.
+      </p>
+      <img src="{{ url_for('static', filename='images/5-stars.png') }}" alt="Customer Reviews" class="review-img">
+
+      <div class="small-hr"></div>
+
+      <p class="review">
+        "I’ve had a lot of PCs over the years, but none have come close to the quality of my Aura PC. It’s quiet, fast, and runs everything I throw at it without any issues. Worth every penny!" – Emma P.
+      </p>
+      <img src="{{ url_for('static', filename='images/5-stars.png') }}" alt="Customer Reviews" class="review-img">
+
+      <div class="small-hr"></div>
+
+      <p class="review">
+        "The customer service at Aura PCs is incredible. They took the time to understand my specific needs and created a PC that is perfect for my home office. The system runs flawlessly, and I couldn’t be more satisfied." – Mark D.
+      </p>
+      <img src="{{ url_for('static', filename='images/5-stars.png') }}" alt="Customer Reviews" class="review-img">
+
+      <div class="small-hr"></div>
+
+
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="home-section" id="contact">
+      <h1 class="title">
+        Contact Us 
+      </h1>
+
+      <div class="medium-hr"></div>
+
+      <p>
+        At Aura PCs, we’re here to help with any questions, custom build requests, or technical support you need. Whether you're looking for advice on a new build, need assistance with an order, or have a special request, our team is ready to assist you. You can reach us via email, phone, or our contact form, 
+        and we’ll get back to you as soon as possible. Stay connected through our social media for updates, promotions, and support. Your satisfaction is our priority, and we’re committed to providing the best service possible.
+      </p>
+
+      <img src="{{ url_for('static', filename='images/call_center.webp') }}" alt="Contact Us" class="contact-img">
+
+      <div class="home-div">
+        <a href="/help">
+          <button class="btn d-block mx-auto view-all-builds">Contact Us</button>
+        </a>
+      </div>
+
+    </section>
+
+    <div class="hr"></div>
+    <a  href="{{url_for('home')}}#top">
+      <button class="floating-btn">Scroll Up</button>
+    </a>
+    
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<nav style="--bs-breadcrumb-divider: '>'; color: white;" aria-label="breadcrumb" class="d-flex justify-content-center ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/basket">Basket</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="/checkout-shipping">Shipping</a></li>
+    <li class="breadcrumb-item"><a href="/checkout-payment">Payment</a></li>
+  </ol>
+</nav>
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    <p>{{ error }}</p>  
+</div>
+{% else %}
+
+{% endif %}
+
+    <div class="look_for_container">
+    <h1 class="title">Payment</h1>
+    <div class="medium-hr"></div>
+    <p style="margin-bottom:-70px;">Please provide your billing information down below.</p>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="form-check form-check2 d-flex flex-column gap-2 mb-3" style="height: 1050px;">
+            <p style="font-size: 35px;">Please enter you billing address:</p>
+            <input placeholder="Address" class="form-control checkout-input" type="text" name="address" id="addresss" required autocomplete="off">
+            <input placeholder="Town / City" class="form-control checkout-input" type="text" name="town" id="town" required autocomplete="off">
+            <input placeholder="County" class="form-control checkout-input" type="text" name="county" id="county" required autocomplete="off">
+            <input placeholder="Postcode" class="form-control checkout-input"  type="text" name="postcode" id="postcode" required maxlength="7" autocomplete="off">
+            <p style="font-size: 35px;">Card Details: </p>
+            <input placeholder="Card Holder Name" class="form-control checkout-input" type="text" name="name" id="name" required  maxlength="40" autocomplete="off">
+            <input class="form-control checkout-input" id="card" type="text" maxlength="19" placeholder="xxxx xxxx xxxx xxxx"  required/>
+            <input placeholder="CVV" class="form-control checkout-input" type="text" name="cvv" id="cvv" required maxlength="3" autocomplete="off" required>
+
+
+            <div class="d-flex align-items-center mv-3" style="margin-left: -20px;">
+            <p style="font-size: 35px;">Expiry Date:</p>
+            <select class="form-select" aria-label="Small select example" style="width: 150px; margin-bottom: 10px; margin-right: 20px; font-size:25px;" required>
+                <option value="1" selected>1</option>
+                {% for month in range(2,13)%}
+                <option value="month">{{ month }}</option>
+                {% endfor %}
+            </select>
+
+            <select class="form-select" aria-label="Small select example" style="width: 150px; margin-bottom: 10px; font-size: 25px;" required >
+                <option value="1" selected>2025</option>
+                {% for year in range(2026,2061)%}
+                <option value="year">{{ year }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="d-flex align-items-center mb-3" style="margin-top: -20px; margin-left: 20px;">
+            <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
+            <label class="form-check-label" for="terms" style="margin-bottom: -15px;">
+                <p>I agree to the buying terms and conditions</a></p>
+            </label>
+            </div>
+
+            <div class="d-flex align-items-center mb-3" style="margin-top: -40px; margin-left: 20px;">
+            <input class="form-check-input" type="checkbox" name="terms" id="terms" >
+            <label class="form-check-label" for="terms" style="margin-bottom: -15px;">
+                <p>I agree that the following summary is correct</a></p>
+            </label>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="look_for_container">
+
+            <h1 class="title">Final Summary</h1>
+            <div class="small-hr"></div>
+            <table class="summary-table" style="width: 1200px; margin-top: 20px; font-size: 35px;">
+                <thead>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </thead>
+                {% for product in products %}
+                <tr style="font-size: 25px; height: 10%;">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>£{{ product.price }}</td>
+                </tr>
+                {% endfor %}
+                <tr style="font-size: 25px; height: 10px; padding-top: -100px;">
+                    <td  style="font-size: 25px;"><strong>Shipping:</strong></td>
+                    <td>{{ shipping_service }}</td>
+                    <td>£{{ cost }}</td>
+
+                </tr>
+                <tfoot>
+                        <td colspan="2" style="text-align: right; font-size: 35px;">Total:</td>
+                        <td>£{{ total_price + cost }}</td>
+                </tfoot>
+            </table>
+            <div>
+                <h1 style="color: white; margin-top: 30px; margin-bottom: 20px;">£{{ total_price }} + Shipping : £{{cost}} </h1>
+                <div class="medium-hr"></div>
+                <h1 style="color: white; margin-top: 30px; font-size: 45px;">Final Cost: £{{ total_price + cost }}</h1>
+                <br>
+                <form action="/checkout-payment" method="post">
+                    <button type="submit" class="btn btn-primary" style="height: 100px; width: 450px; font-size: 45px; font-family: 'poppins', sans-serif;">Confirm and Pay</button>
+                </form>
+            </div>
+        </div>
+
+
+<script>
+const cardInput = document.getElementById("card");
+
+cardInput.addEventListener("input", function (e) {
+  let value = e.target.value;
+
+  value = value.replace(/\D/g, "");
+
+  const formattedValue = value.match(/.{1,4}/g)?.join(" ") || "";
+
+  e.target.value = formattedValue;
+});
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<body style="margin-left: 42px;" id="top">
+
+    <nav style="--bs-breadcrumb-divider: '>'; color: white; margin-top: -60px; margin-bottom: -60px;" aria-label="breadcrumb" class="d-flex justify-content-center ">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/design-cpu">CPU</a></li>
+        <li class="breadcrumb-item"><a href="/design-motherboard">Motherboard</a></li>
+        <li class="breadcrumb-item"><a href="/design-ram">RAM</a></li>
+        <li class="breadcrumb-item"><a href="/design-gpu">GPU</a></li>   
+        <li class="breadcrumb-item"> <a href="design-storage">Storage</a></li>
+        <li class="breadcrumb-item active"> <a href="/design-cooler">Cooler</a></li>
+        <li class="breadcrumb-item"> <a href="/design-psu">PSU</a></li>
+        <li class="breadcrumb-item"><a href="/design-case">Case</a></li>
+        <li class="breadcrumb-item"><a href="/design-name">Name</a></li>
+    </ol>
+    </nav>
+    {% if error == "length" %}
+    <div class="alert alert-danger" role="alert" style="margin-top: 40px;">
+        <p style="color: black; font-size: 30px;">No more than 20 characters</p>
+    </div>
+    {% elif error == "match" %}
+    <div class="alert alert-danger" role="alert" style="margin-top: 40px;">
+        <p style="color: black; font-size: 30px;">No more than 20 characters</p>
+    </div>
+    {% endif %}
+
+    <div class="look_for_container">
+    <h1 class="title">Step 9: Naming Your PC</h1>
+    <div class="small-hr"></div>
+    <p>This is the final step to designing your PC and the simplest. Just enter a name no more than 20 charaters in the input below to give your custom PC build a name. This is required.</p>
+
+
+    <form action="/design-name" method="POST">
+    <input required placeholder="Enter a name for your PC" name="name" autocomplete="off" class="login-input" style="width: 600px; margin-bottom: 2 0px; " >
+
+    <br>
+    <br>
+    <div class="medium-hr"></div>
+    <br>
+        
+    <button class="btn btn-primary" style="height: 100px; width: 400px; font-size: 40px; border-radius: 20px;" type="submit">Next</button>
+    </form>
+    </div>
+
+    <br>
+
+
+      <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('design_case')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+        </ul>
+    </div>    
+
+
+    
+</body>
+
+
+
+{% endblock %}

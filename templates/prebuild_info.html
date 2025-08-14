@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<body style="margin-left: 42px;" id="top">
+<h1 class="title">Prebuild Information</h1>
+<div class="medium-hr"></div>
+<p>
+    This page provides all the extra information you need about our prebuilt PCs, including details on build quality, dispatch times, warranty coverage, and upgrade possibilities. We aim to give you a clear understanding of what goes into our systems and what you can expect when purchasing a ready-made PC from us—so you can make an informed decision with confidence.
+</p>
+
+<div class="look_for_container" id="info">
+    <h1 class="title">Extra Information</h1>
+
+    <h1 class="title_3"> 🔧 Build Quality</h1>
+    <p>
+        Our prebuilt PCs are crafted using carefully selected, high-quality components from industry-leading brands. Each unit is assembled with precision in a controlled environment by expert technicians. We ensure clean cable management, efficient cooling solutions, and reliable hardware integration, so every prebuilt PC delivers consistent performance and longevity right out of the box.
+    </p>
+    <div class="medium-hr"></div>
+
+    <h1 class="title_3">🔌 Ready to Use Out of the Box</h1>
+    <p>
+        All our prebuilt PCs come fully assembled and undergo thorough testing before shipping, including operating system installation and driver updates. You can expect a hassle-free setup experience—simply plug in and start using your new PC immediately, without the wait or complexity of building your own.
+
+    </p>
+    <div class="medium-hr"></div>
+
+        <h1 class="title_3"> ⏰ Dispatch Time</h1>
+    <p>
+        We understand you want your PC fast, so we maintain an efficient inventory of popular prebuilt models ready to ship. Most prebuilt PCs are dispatched within 1-2 business days of your order, ensuring quick delivery and minimal waiting time.
+    </p>
+    <div class="medium-hr"></div>
+
+        <h1 class="title_3"> 🛡️ Warranty & Support </h1>
+    <p>
+        Every prebuilt PC includes a comprehensive manufacturer warranty, covering all included components for at least 12 months. Our dedicated support team is available to assist with any technical questions or issues, providing ongoing service and peace of mind for your purchase.
+    </p>
+    <div class="medium-hr"></div>
+
+        <h1 class="title_3"> ✔️ Quality Assurance </h1>
+    <p>
+        Before shipping, each prebuilt system undergoes stringent quality control checks including hardware diagnostics, stress testing, and thermal performance evaluations. This ensures you receive a stable, fully functional PC that meets our high standards for reliability and performance.
+    </p>
+    <div class="medium-hr"></div>
+
+        <h1 class="title_3"> 🔄 Upgrade & Maintenance Ready</h1>
+    <p>
+        While prebuilt, our PCs are designed with upgradeability in mind. Whether you want to add more memory, increase storage capacity, or enhance graphics performance later on, our systems are built with accessible components and modular designs for easy upgrades.    </p>
+
+
+</div>
+
+<nav aria-label="..." style="margin-top: 40px; justify-content: center;" class="d-flex">
+  <ul class="pagination">
+    <li class="page-item"><a href="/delivery" class="page-link">Previous</a></li>
+    <li class="page-item "><a class="page-link" href="/prebuilds">1</a></li>
+    <li class="page-item"><a class="page-link" href="/compare" aria-current="page">2</a></li>
+    <li class="page-item"><a class="page-link" href="/reccomendations">3</a></li>
+    <li class="page-item"><a class="page-link" href="/what_to_look_for">4</a></li>
+    <li class="page-item"><a class="page-link" href="/delivery">5</a></li>
+    <li class="page-item active"><a class="page-link" href="/prebuild_info">6</a></li>
+
+    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+
+    <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('prebuild_info')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('prebuild_info')}}#info">
+                    <button class="floating-btn2">Information</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+{% endblock %}

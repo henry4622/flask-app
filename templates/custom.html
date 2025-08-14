@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<body style="margin-left:42px;">
+    {% if success == True %}
+    <div class="alert alert-success" role="alert">
+        <p style="color: black; font-size: 30px;">PC has been successfully saved! Click <a href="/view-custom-builds">here</a> to view your build</p>
+    </div>
+    {% elif success == "fail" %}
+    <div class="alert alert-danger" role="alert">
+        <p style="color: black; font-size: 30px;">You have already saved 5 builds, please delete one before saving another. You can do this by visitng <a href="view-custom-builds">this</a> webpage.</p>
+    </div>
+
+    {% endif %}
+    <div class="look_for_container mx-auto" style="width: 1200px">
+    <h1 class="title">Custom PCs </h1>
+    <div class="medium-hr"></div>
+    <p>At our core, we believe that your PC should be as unique as you are. That’s why we give you the power to design your own dream machine, tailored to your specific needs, style, and performance goals. Whether you're a gamer, creator, or professional, our easy-to-use online builder lets you customize every component – from the processor and graphics card to the case design and lighting. Build it your way, and we’ll bring it to life with expert craftsmanship and top-tier parts.</p>
+    <p class="title_3">Design, Order, Enjoy - click down below to start designing</p>
+    <div class="small-hr"></div>
+    <div>
+        <a href="/design-cpu" class="link">
+            <button class="btn btn-primary" style="height: 100px; width: 400px; font-size: 40px; border-radius: 20px;">Start Designing</button>
+        </a>
+    </div>
+
+</body>
+
+{% endblock %}

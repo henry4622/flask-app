@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<body style="margin-left: 42px;" id="top">
+
+    <nav style="--bs-breadcrumb-divider: '>'; color: white; margin-top: -60px; margin-bottom: -60px;" aria-label="breadcrumb" class="d-flex justify-content-center ">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/design-cpu">CPU</a></li>
+        <li class="breadcrumb-item"><a href="/design-motherboard">Motherboard</a></li>
+        <li class="breadcrumb-item"><a href="/design-ram">RAM</a></li>
+        <li class="breadcrumb-item"><a href="/design-gpu">GPU</a></li>   
+        <li class="breadcrumb-item"> <a href="design-storage">Storage</a></li>
+        <li class="breadcrumb-item active"> <a href="/design-cooler">Cooler</a></li>
+        <li class="breadcrumb-item"> <a href="/design-psu">PSU</a></li>
+        <li class="breadcrumb-item"><a href="/design-case">Case</a></li>
+        <li class="breadcrumb-item">Name</li>
+
+        
+
+    </ol>
+    </nav>
+
+    <div class="look_for_container">
+    <h1 class="title">Step 8: Choosing your Case</h1>
+    <div class="small-hr"></div>
+    <p>This is the final step of designing a part to your PC. The cases shown down below are based off your GPU and motherboard sizing. All cases come with the full amount of fans installed. </p>
+
+
+    <form action="/design-case" method="POST">
+        <select class="design-select" name="case" id="case" required style="width:700px;">
+            <option selected disabled value="">Choose your Case</option>
+            {% for case in cases %}
+            <option value="{{ case.component_name }}">{{ case.component_name }} - {{ case.factor }} - £{{ case.retail_price }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <div class="medium-hr"></div>
+        <br>
+        <button class="btn btn-primary" style="height: 100px; width: 400px; font-size: 40px; border-radius: 20px;" type="submit">Next</button>
+    </form>
+    </div>
+
+    <br>
+
+    <div class="look_for_container">
+    <h1 class="title" id="build">PC build so far: </h1>
+    <div class="small-hr"></div>
+    <table class="summary-table mx-auto" style="height: 200px; font-size: 20px; width: 900px; margin-bottom: 50px;">
+        <thead>
+            <th>Part</th>
+            <th>Part Name</th>
+            <th>Price</th>
+        </thead>
+        <tr>
+            <td>CPU</td>
+            <td>{{ cpu }}</td>
+            <td>£{{ cpu_price }}</td>
+        </tr>
+        <tr>
+            <td>Motherboard</td>
+            <td>{{ motherboard }}</td>
+            <td>£{{ motherboard_price }}</td>
+        </tr>
+        <tr>
+            <td>RAM</td>
+            <td>{{ ram }}</td>
+            <td>£{{ ram_price }}</td>
+        </tr>
+        <tr>
+            <td>GPU</td>
+            <td>{{ gpu }}</td>
+            <td>£{{ gpu_price }}</td>
+        </tr>
+        <tr>
+            <td>Storage</td>
+            <td><ul>{% for store in storage %} {% if store != "" %} - {{ store }}<br> {% else %}  {% endif %} {% endfor %}</ul></td>
+            <td>£{{ storage_price }} </td>
+        </tr>
+        <tr>
+            <td>CPU Cooler</td>
+            <td>{{ cooler }}</td>
+            <td>£{{ cooler_price }}</td>
+        </tr>
+        <tr>
+            <td>Power Supply</td>
+            <td>{{ psu }}</td>
+            <td>£{{ psu_price }}</td>
+        </tr>
+        <tfoot>
+            <td>Total Cost</td>
+            <td></td>
+            <td>£{{ cpu_price + motherboard_price + ram_price + gpu_price + storage_price + cooler_price}}</td>
+        </tfoot>
+    </table>
+    </div>
+
+      <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('design_case')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+            <li>
+                <a  href="{{url_for('design_case')}}#build">
+                    <button class="floating-btn2">Build So Far</button>
+                </a>
+            </li>
+        </ul>
+    </div>    
+
+
+    
+</body>
+
+
+
+{% endblock %}

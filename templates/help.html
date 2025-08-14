@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<div class="look_for_container">
+
+<h1 class="title">Help Center</h1>
+
+<div class="small-hr"></div>
+
+{% if success == "True" %}
+<div class="alert alert-success" role="alert">
+    <p style="color: black">Your request has been sent successfully!</p>
+</div>
+{% else %}
+
+<p>Welcome to the AURA PCs Help Center! Drop your help request down below and well be back to you within minutes the request will be sent to yout inbox</p>
+<form action="/help" method="post">
+<textarea 
+  style="width: 1000px; height: 500px; font-size: 30px; margin-top: 20px; resize: vertical; padding: 10px; box-sizing: border-box;" 
+  name="request" 
+  id="request" 
+  placeholder="Enter your help request here..." 
+  required></textarea>
+
+  <div class="medium-hr"></div>
+  <br>
+
+
+<button type="submit" class="btn btn-primary" style="height: 70px; width: 450px; font-size: 45px; font-family: 'poppins',sans-serif;">Submit</button>
+{% endif %}
+</div>
+
+
+{% endblock %}

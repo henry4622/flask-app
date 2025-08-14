@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+
+
+{% block main %}
+
+<body style="margin-left: -100px;">
+    <div class="look_for_container mx-auto" style="width: 1900px">
+    <h1 class="title">Custom Builds</h1>
+    <div class="medium-hr"></div>
+    
+    <p>Your saved custom PC builds are shown below. Only up to 5 PC custom builds can be saved</p>
+    {% if  not pcs %}
+    <p>You have no saved custom builds click <a href="{{ url_for('design_cpu')}}">here</a> to start designing!</p>
+    {% else %}
+    <table class="summary-table mx-auto" style="width:1700px; font-size: 20px;">
+        <thead>
+            <th>Name</th>
+            <th>CPU</th>
+            <th>Motherboard</th>
+            <th>RAM</th>
+            <th>Storage</th>
+            <th>GPU</th>
+            <th>Cooler</th>
+            <th>PSU</th>
+            <th>Case</th>
+            <th style="padding-right: 10px;">Price</th>
+            <th></th>
+        </thead>
+        {% for pc in pcs %}
+        <tr style="height:100px;">
+        <td style="padding-left: 30px;">{{ pc.name }}</td>
+        <td style="padding-left: 20px; height: 150px;">{{ pc.cpu }}</td>
+        <td style="padding-left: 20px;">{{ pc.motherboard }}</td>
+        <td style="padding-left: 20px;">{{ pc.ram }}</td>
+        <td style="padding-left: 20px;">{{ pc.storage.strip("[]").replace("'","") }}</td>
+        <td style="padding-left: 20px;">{{ pc.gpu }}</td>
+        <td style="padding-left: 20px;">{{ pc.cooler }}</td>
+        <td style="padding-left: 20px;">{{ pc.psu }}</td>
+        <td style="padding-left: 20px;">{{ pc.pc_case }}</td>
+        <td style="padding-left: 20px; padding-right: 20px;"> £{{ pc.cost }} </td>
+        <td style="display: flex; margin-top: 40px;">
+        <form action="/remove-custom-build" method="post" style="display: inline;">
+
+            <input type="hidden" name="id" value="{{ pc.id }}">
+
+            <button style="background: none; border: none; cursor: pointer;" type="submit">
+                <img src="{{ url_for('static', filename='images/trash.png') }}" style="height: 60px; width: auto; margin-left: 20px; margin-right: 20px;" alt="Remove Item">
+            </button>
+
+        </form>
+        <form action="/custom-basket" method="post">
+            <input type="hidden" name="id" value="{{ pc.id }}">
+            <button class="btn btn-primary" style="margin-right: 10px;" id="liveToastBtn{{ pc.id }}">Add To Basket</button>
+        </form>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="liveToast{{ pc.id }}">
+                  <div class="toast-body">
+                    {{ pc.name }} successfully added to basket.
+                    <div class="mt-2 pt-2 border-top">
+                      <a href="/basket">
+                      <button type="button" class="btn btn-primary btn-sm">View Basket</button>
+                      </a>
+                      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </td>
+
+    </tr>
+            
+
+        {% endfor %}
+
+
+        
+    </table>
+
+    {% endif %}
+    </div>
+
+</body>
+
+    <script>
+      for (let i = 1; i <= 5; i++) {
+        const toastTrigger = document.getElementById(`liveToastBtn${i}`);
+        const toastLiveExample = document.getElementById(`liveToast${i}`);
+
+        if (toastTrigger && toastLiveExample) {
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+          toastTrigger.addEventListener('click', () => {
+            toastBootstrap.show();
+          });
+        }
+}
+
+      </script>
+
+
+{% endblock %}

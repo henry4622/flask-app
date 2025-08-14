@@ -1,0 +1,76 @@
+{% extends 'layout.html'%}
+
+{% block main %}
+
+
+<body style="margin-left:42px"> 
+    <div class="login-div">
+        <div>
+        <form action="/login" method="post" class="login-form" autocomplete="off">
+            <h1 class="title">
+                Login
+            </h1>
+            <div class="medium-hr"></div>
+
+            <div class="input-wrapper">
+                <input type="text" name="email" placeholder="Email" required class="login-input" autofill="off" autocomplete="off">
+                {% if email_error == True %}
+                    <p class="password-message">Email Not Found</p>
+                {% endif %}
+            </div>
+
+            <div class="small-hr"></div>
+
+            <div class="input-wrapper">
+                <div class="password-container">
+                    <input  name="password" placeholder="Password" required class="login-input" id="password" autofill="off" autocomplete="off">
+                    <button id='togglepassword' class="icon-button" type="button">
+                        <img src="{{ url_for ('static', filename='images/eye.png')}}" alt="eye" id="eye-icon" class="eye-icon">
+                    </button>
+                </div>
+                {% if password_error == True %}
+                    <p class="password-message" style="margin-bottom: 10px;">Invalid Password</p>
+                {% endif %}
+            </div>
+
+            <div class="small-hr" style="margin-top: 20px;"></div>
+            
+            <div class="login-buttons">
+                <button type="submit" class="btn login-button">Login</button>
+                
+            </div>
+            <p> Forgot password? Click <a class="link" href="#">Here</a> to reset</p>
+
+        </form>
+        <a href="{{ url_for('register')}}">
+            <button class="btn login-button" formnovalidate>Register</button>
+        </a>
+        </div>
+    </div>
+</body>
+<script>
+    const password = document.getElementById('password');
+    const icon = document.getElementById('eye-icon');
+
+    icon.addEventListener("mousedown", () => {
+        password.type = "text";
+        icon.src = "{{ url_for ('static', filename='images/eye-closed.png')}}";
+
+        
+      });
+    
+      icon.addEventListener("mouseup", () => {
+        password.type = "password";
+        icon.src = "{{ url_for ('static', filename='images/eye.png')}}";
+      });
+    
+
+      icon.addEventListener("mouseleave", () => {
+        password.type = "password";
+        icon.src = "{{ url_for ('static', filename='images/eye.png')}}";
+        
+    });
+  </script>
+
+
+{% endblock %}

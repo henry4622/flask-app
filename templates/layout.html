@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=0.1">
+    </head> 
+    <body>
+        <nav class="navbar d-flex">
+            <button class="ms-5 btn btn-outline-secondary menu_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><img src="{{ url_for('static', filename='svg/menu.svg') }}" class="menu"></button>
+            <div class="offcanvas offcanvas-start show" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel" data-bs-backdrop="false">
+              <div class="offcanvas-header">
+                <div class="nav-div" style="margin-left: 50px; margin-bottom: 25px; border: 5px solid goldenrod; border-radius: 7px;">
+                  <h5 class="offcanvas-title offcanvas_title" id="offcanvasWithBothOptionsLabel"style="font-family:'poppins', sans-serif; color: rgb(0, 150, 196); font-size: 55px; text-align: center; text-decoration: bold;"> AURA </h5>
+                  <h5  style="font-family:'poppins', sans-serif; color: rgb(0, 150, 196); font-size: 55px; text-align: center;" class="offcanvas_title">PCs</h5>
+                </div>  
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+
+              <div class="hr">
+
+              </div>
+              <div class="offcanvas-body " style="border-right: 3px solid rgb(0, 150, 196)">
+
+
+                <div class="accordion accordion-flush" id="accordionExample" style="margin-top: -18px;">
+                  <div class="accordion-item" >
+                    <h2 class="accordion-header" >
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHome" aria-expanded="false" aria-controls="collapseHome" style="height: 120px; border-right: 2px; font-size: 35px;">
+                        <img src="{{ url_for('static', filename='images/home-icon.png') }}" class="large-icon" ><h2 style="font-size: 55px; margin-left: 10px;">Home</h2>
+                      </button>
+                    </h2>
+
+
+                    <div id="collapseHome" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <a href="/" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/menu-burger.png') }}" class="icon">Main
+                          </div>
+                        </a>
+                        <a href="{{ url_for('home')}}#about" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/users-alt.png') }}" class="icon">About
+                          </div>
+                        </a>
+                        <a href="{{ url_for('home')}}#services" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/bell-ring.png') }}" class="icon">Services
+                          </div>
+                        </a>
+                        <a href="{{ url_for('home')}}#featured" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/computer.png') }}" class="icon">Featured Builds
+                          </div>
+                        </a>
+                        <a href="{{ url_for('home')}}#reviews" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/comment-alt.png') }}" class="icon">Reviews
+                          </div>
+                        </a>
+                        <a href="{{ url_for('home')}}#contact" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/interrogation.png') }}" class="icon">Contact
+                          </div>
+                        </a>
+                      </div>
+                     </div>
+                  </div>
+                
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePreBuild" aria-expanded="false" aria-controls="collapseHome" style="height: 120px; border-right: 2px;">
+                        <img src="{{ url_for('static', filename='images/prebuilds.png') }}" class="large-icon"><h2 style="font-size: 55px; margin-left: 10px;">PreBuilds</h2>
+                      </button>
+                    </h2>
+                    <div id="collapsePreBuild" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+
+                            <a href="/prebuilds" class="link">    
+                              <div class="button-container text-decoration-none">
+                                <img src="{{ url_for('static', filename='images/menu-burger.png') }}" class="icon">Main
+                              </div>
+                            </a>
+                            <a href="/compare" class="link">    
+                              <div class="button-container text-decoration-none">
+                                <img src="{{ url_for('static', filename='images/compare.png') }}" class="icon">Compare
+                              </div>
+                            </a>
+                            <a href="/reccomendations" class="link">    
+                              <div class="button-container text-decoration-none">
+                                <img src="{{ url_for('static', filename='images/reccomendations.png') }}" class="icon">Recommendations
+                              </div>
+                            </a>
+                            <a href="/what_to_look_for" class="link">    
+                              <div class="button-container text-decoration-none">
+                                <img src="{{ url_for('static', filename='images/look-for.png') }}" class="icon">What to look for
+                              </div>
+                            </a>
+                            <a href="/delivery" class="link">    
+                              <div class="button-container text-decoration-none">
+                                <img src="{{ url_for('static', filename='images/delivery.png') }}" class="icon">Delivery
+                              </div>
+                            </a>
+                            <a href="/prebuild_info" class="link">    
+                              <div class="button-container text-decoration-none">
+                                <img src="{{ url_for('static', filename='images/ex_info.png') }}" class="icon">Extra Information
+                              </div>
+                            </a>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="accordion accordion-flush" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCustom" aria-expanded="false" aria-controls="collapseHome" style="height: 120px; border-right: 2px;">
+                        <img src="{{ url_for('static', filename='images/custom-pcs.png') }}" class="large-icon"><h2 style="font-size: 46px; margin-left: 10px;">Custom PCs</h2>
+                      </button>
+                    </h2>
+
+
+                    <div id="collapseCustom" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <a href="/custom_builds" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/menu-burger.png') }}" class="icon">Main
+                          </div>
+                        </a>
+                        <a href="{{ url_for('view_custom_builds')}}" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/cms.png') }}" class="icon">View Custom Builds
+                          </div>
+                        </a>
+                        <a href="/compare-customs" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/chart.png') }}" class="icon">Compare
+                          </div>
+                        </a>
+                        <a href="/design-cpu" class="link">    
+                          <div class="button-container text-decoration-none">
+                            <img src="{{ url_for('static', filename='images/paintbrush.png') }}" class="icon">Start Designing
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+    
+
+                </div>
+              </div>
+            </div>
+
+
+            
+                <div class="navbar-brand mx-auto log-div">
+                    <img class="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+                </div>
+
+
+
+
+
+
+                <div class="dropdown nav-item ms-auto me-5" >
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" 
+                          style="background-color: white; border: none; width: 60px; height: 60px; margin-left: -20px; padding: 0;">
+                    <img class="icon-nav" src="{{ url_for('static', filename='images/user.png') }}" alt="user" style="width: 100%; height: 100%; object-fit: contain;">
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px; font-size: 25px; text-align: left; background-color: white; border: 2px solid goldenrod">
+                    <li><a class="dropdown-item" href="/orders" class=" nav-text2" ><img class="icon-2" src="{{ url_for('static', filename='images/shopping-list.png') }}">Orders</a></li>
+                    <li><a class="dropdown-item" href="/account" class="nav-text2"><img class="icon-2" src="{{ url_for('static', filename='images/account.png') }}">Account</a></li>
+                    <li><a class="dropdown-item" href="/help" class="nav-text2"><img class="icon-2" src="{{ url_for('static', filename='images/support.png') }}"> Help</a></li>
+                  </ul>
+                </div>
+
+                <div class="nav-item">
+                  <a href="/basket">
+                    <img class="icon-nav" src="{{ url_for('static', filename='images/basket.png') }}" alt="user">
+                  </a>
+                </div>    
+                
+
+          </div>
+        </nav>
+            <main class="container py-5 text-center">
+      {% block main %} 
+      {% endblock %}
+</main>
+</body>
+

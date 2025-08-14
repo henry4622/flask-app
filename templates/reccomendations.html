@@ -1,0 +1,141 @@
+{% extends 'layout.html' %}
+{% block main %}
+
+<body>
+    <h1 class="title"> Reccomendations </h1>
+    <div class="medium-hr"></div>
+    <p>
+        Fill out this  6 question questionaire in seconds to get reccomendations for your ideal PC tailored to your needs<br> <br>
+        <div class="small-hr"></div>
+        {% if error %}
+            <p class="danger">Please Fill in all the fields</p>
+        {% endif %}
+        {% if applied %}
+            <p class="success">Reccomendations are as followed: </p>
+        {% endif %}
+        {% if pcs %}
+        <div class="row  d-flex justify-content-center g-0 o w-250 ms-auto me-auto mx-auto" style="margin-left:42px;">
+            {% for pc in pcs %}
+            <div class="col-auto p-0 g-10">
+              <div class="card card-medium d-flex flex-column"> 
+                <img src="{{ url_for('static', filename='images/' + pc.name + '.png') }}" class="card-img-top card-img-medium" alt="{{pc.name}}">
+          
+                <div class="card-body d-flex flex-column justify-content-between p-2">
+                  <div>
+                    <h5 class="card-title-small text-center">{{ pc.name }}</h5>  
+                    <div class="x-small-hr"></div>
+                    <p class="card-title-small text-center">{{ pc.price }}</p>
+                    <div class="x-small-hr"></div>
+                  </div>
+          
+                  <div class="btn-container d-flex flex-column gap-2 mt-auto">
+                    <form action="/prebuilds" method="post">
+                      <button type="submit" class="btn btn-primary btn-sm w-100" id="show{{pc.id}}" name="hide{{pc.id}}" value="hide">Visit PC</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% endif %}
+        <form action="/reccomendations" method="post" class="form-reccomendations" style="margin-left:42px;">
+            <div class="form-group">
+                <label class="mb-auto">1. Usage</label>
+                <select class="form-select" id="use" name="use">
+                    <option value="" selected>What will you be using the PC for?</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="work">Work</option>
+                    <option value="gaming">Streaming</option>
+                </select>
+            </div>
+            <div class="small-hr"></div>
+            <div class="form-group"> 
+                <label class="mb-auto">2. Price Range</label>
+                <select class="form-select" id="price" name="price">
+                    <option value="" selected>What price range are you looking for?</option>
+                    <option value="high">1700-5000</option>
+                    <option value="mid">700-1700</option>
+                    <option value="low">0-700</option>
+                </select>
+            </div>
+            <div class="small-hr"></div>
+            <div class="form-group">
+                <label class="mb-auto">3. CPU preferences</label>
+                <select class="form-select" id="cpu" name="cpu">
+                    <option value="" selected>Do you have a preference on what CPU you want</option>
+                    <option value="all">Anything</option>
+                    <option value="intel">Intel</option>
+                    <option value="ryzen">Ryzen</option>
+                    <option value="i3">Intel Core i3</option>
+                    <option value="i5">Intel Core i5</option>
+                    <option value="i7">Intel Core i7</option>
+                    <option value="i9">Intel Core i9</option>
+                </select>
+            </div>
+            <div class="small-hr"></div>
+            <div class="form-group">
+                <label class="mb-auto">4. GPU preferences</label>
+                <select class="form-select" id="gpu" name="gpu">
+                    <option value="" selected>Do you have a preference on what GPU you want</option>
+                    <option value="all">Anything</option>
+                    <option value="nvidia">NVIDIA</option>
+                    <option value="amd">AMD</option>
+                    <option value="rtx 50">NVIDIA 50 series</option>
+                    <option value="rtx 40">NVIDIA 40 series</option>
+                    <option value="rtx 30">NVIDIA 30 series</option>
+                    <option value="intergrated">Intergrated Graphics </option>
+                </select>
+            </div>
+            <div class="small-hr"></div>
+            <div class="form-group">
+                <label class="mb-auto">5. Storage Needs</label>
+                <select class="form-select" id="storage" name="storage">
+                    <option value="" selected>Do you want minimal storage</option>
+                    <option value="low">Yes</option>
+                    <option value="high">No</option>
+                </select>
+            </div>
+            <div class="small-hr"></div>
+
+            <div class="form-group">
+                <label class="mb-auto">6. Case Design</label>
+                <select class="form-select" id="case" name="case">
+                    <option value="" selected>Do you want a colourful case?</option>
+                    <option value="plain">No</option>
+                    <option value="rgb">Yes</option>
+                    <option value="all">Dont Mind</option>
+                </select>
+            </div>
+            <div class="medium-hr" style="margin-top: 10px;"></div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Search For reccomendations</button>
+        </form>
+
+  <nav aria-label="..." style="margin-top: 40px; justify-content: center;" class="d-flex">
+  <ul class="pagination">
+    <li class="page-item"><a href="/compare" class="page-link">Previous</a></li>
+    <li class="page-item "><a class="page-link" href="/prebuilds">1</a></li>
+    <li class="page-item active "><a class="page-link" href="/compare" aria-current="page">2</a></li>
+    <li class="page-item"><a class="page-link" href="/reccomendations">3</a></li>
+    <li class="page-item"><a class="page-link" href="/what_to_look_for">4</a></li>
+    <li class="page-item"><a class="page-link" href="/delivery">5</a></li>
+    <li class="page-item"><a class="page-link" href="/prebuild_info">6</a></li>
+
+    <li class="page-item"><a class="page-link" href="/what_to_look_for">Next</a></li>
+  </ul>
+</nav>
+    <div class="floating-div index-div" style="margin-top:-28px; ">
+        <h1 class="title_3" style="text-align: center;">Index:</h1>
+        <ul style="color: white; font-size: 25px;">
+            <li>
+                <a  href="{{url_for('reccomendations')}}#top">
+                    <button class="floating-btn2">Top</button>
+                </a>
+            </li>
+        </ul>
+    </div>  
+
+</body>
+
+{% endblock%}

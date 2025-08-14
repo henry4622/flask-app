@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block main %}
+<title>Design CPU</title>
+
+<body style="margin-left: 44px; height: 10000px;">
+
+    <nav style="--bs-breadcrumb-divider: '>'; color: white; margin-top: -60px; margin-bottom: -60px;" aria-label="breadcrumb" class="d-flex justify-content-center ">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a href="/cpu">CPU</a></li>
+        <li class="breadcrumb-item">Motherboard</li>
+        <li class="breadcrumb-item"> RAM</li>
+        <li class="breadcrumb-item"> GPU</li>   
+        <li class="breadcrumb-item"> Storage</li>
+        <li class="breadcrumb-item"> Cooler</li>
+        <li class="breadcrumb-item"> PSU</li>
+        <li class="breadcrumb-item">Case</li>
+        <li class="breadcrumb-item">Name</li>
+
+
+    </ol>
+    </nav>
+
+<div class="look_for_container">
+<h1 class="title">Step 1: Choosing Your CPU</h1>
+<div class="small-hr"></div>
+
+<p>This is the first stage of designing your own PC all options are shown with their prices.</p>
+
+<form action="/design-cpu" method="POST">
+    <select class="design-select" name="cpu" id="cpu" required style="width: 600px;">
+        <option value="" selected disabled class="design-option">Choose your CPU</option>
+        {% for cpu in cpus %}
+        <option value="{{ cpu.component_name }}">{{ cpu.component_name }} - £{{ cpu.retail_price }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <br>
+    <div class="medium-hr"></div>
+    <br>
+    <br>
+
+
+
+    <button class="btn btn-primary" style="height: 100px; width: 400px; font-size: 40px; border-radius: 20px;margin-bottom: 20px;" type="submit">Next</button>
+</form>
+</div>
+
+
+
+</body>
+
+
+
+{% endblock %}
