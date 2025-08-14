@@ -79,32 +79,32 @@
                     <div id="collapsePreBuild" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
 
-                            <a href="/prebuilds" class="link">    
+                            <a href="{{ url_for('prebuilds') }}" class="link">    
                               <div class="button-container text-decoration-none">
                                 <img src="{{ url_for('static', filename='images/menu-burger.png') }}" class="icon">Main
                               </div>
                             </a>
-                            <a href="/compare" class="link">    
+                            <a href="{{ url_for('compare') }}" class="link">    
                               <div class="button-container text-decoration-none">
                                 <img src="{{ url_for('static', filename='images/compare.png') }}" class="icon">Compare
                               </div>
                             </a>
-                            <a href="/reccomendations" class="link">    
+                            <a href="{{ url_for('reccomendations') }}" class="link">    
                               <div class="button-container text-decoration-none">
                                 <img src="{{ url_for('static', filename='images/reccomendations.png') }}" class="icon">Recommendations
                               </div>
                             </a>
-                            <a href="/what_to_look_for" class="link">    
+                            <a href="{{ url_for('what_to_look_for') }}" class="link">    
                               <div class="button-container text-decoration-none">
                                 <img src="{{ url_for('static', filename='images/look-for.png') }}" class="icon">What to look for
                               </div>
                             </a>
-                            <a href="/delivery" class="link">    
+                            <a href="{{ url_for('delivery') }}" class="link">    
                               <div class="button-container text-decoration-none">
                                 <img src="{{ url_for('static', filename='images/delivery.png') }}" class="icon">Delivery
                               </div>
                             </a>
-                            <a href="/prebuild_info" class="link">    
+                            <a href="{{ url_for('prebuild_info') }}" class="link">    
                               <div class="button-container text-decoration-none">
                                 <img src="{{ url_for('static', filename='images/ex_info.png') }}" class="icon">Extra Information
                               </div>
@@ -124,7 +124,7 @@
 
                     <div id="collapseCustom" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <a href="/custom_builds" class="link">    
+                        <a href="{{ url_for('custom_builds') }}" class="link">    
                           <div class="button-container text-decoration-none">
                             <img src="{{ url_for('static', filename='images/menu-burger.png') }}" class="icon">Main
                           </div>
@@ -134,12 +134,12 @@
                             <img src="{{ url_for('static', filename='images/cms.png') }}" class="icon">View Custom Builds
                           </div>
                         </a>
-                        <a href="/compare-customs" class="link">    
+                        <a href="{{ url_for('compare_prebuilds') }}" class="link">    
                           <div class="button-container text-decoration-none">
                             <img src="{{ url_for('static', filename='images/chart.png') }}" class="icon">Compare
                           </div>
                         </a>
-                        <a href="/design-cpu" class="link">    
+                        <a href="{{ url_for('design_cpu') }}" class="link">    
                           <div class="button-container text-decoration-none">
                             <img src="{{ url_for('static', filename='images/paintbrush.png') }}" class="icon">Start Designing
                           </div>
@@ -171,14 +171,14 @@
                     <img class="icon-nav" src="{{ url_for('static', filename='images/user.png') }}" alt="user" style="width: 100%; height: 100%; object-fit: contain;">
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px; font-size: 25px; text-align: left; background-color: white; border: 2px solid goldenrod">
-                    <li><a class="dropdown-item" href="/orders" class=" nav-text2" ><img class="icon-2" src="{{ url_for('static', filename='images/shopping-list.png') }}">Orders</a></li>
-                    <li><a class="dropdown-item" href="/account" class="nav-text2"><img class="icon-2" src="{{ url_for('static', filename='images/account.png') }}">Account</a></li>
-                    <li><a class="dropdown-item" href="/help" class="nav-text2"><img class="icon-2" src="{{ url_for('static', filename='images/support.png') }}"> Help</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('orders') }}" class=" nav-text2" ><img class="icon-2" src="{{ url_for('static', filename='images/shopping-list.png') }}">Orders</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('account') }}" class="nav-text2"><img class="icon-2" src="{{ url_for('static', filename='images/account.png') }}">Account</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('help') }}" class="nav-text2"><img class="icon-2" src="{{ url_for('static', filename='images/support.png') }}"> Help</a></li>
                   </ul>
                 </div>
 
                 <div class="nav-item">
-                  <a href="/basket">
+                  <a href="{{ url_for('basket') }}">
                     <img class="icon-nav" src="{{ url_for('static', filename='images/basket.png') }}" alt="user">
                   </a>
                 </div>    
