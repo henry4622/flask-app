@@ -828,18 +828,22 @@ def custom_basket():
 def compare_customs():
     email = request.cookies.get("email")
     show=False
+    error=None
     customs = run_query("SELECT * FROM custom_builds WHERE email = ?", (email,))
     prebuilds = run_query("SELECT * FROM products")
     if request.method == "POST":
         prebuild = request.form.get("prebuild")
         custom = request.form.get("custom")
-        if prebuild and custom:
-            
-            prebuild_info = run_query("SELECT * FROM products WHERE name = ?", (prebuild,))
-            custom_info = run_query("SELECT * FROM custom_builds WHERE email = ? AND name = ?", (email, custom, ))
+        if prebuild:
+            if custom:
+                prebuild_info = run_query("SELECT * FROM products WHERE name = ?", (prebuild,))
+                custom_info = run_query("SELECT * FROM custom_builds WHERE email = ? AND name = ?", (email, custom, ))
         
-            return render_template("compare-customs.html", custom_info=custom_info, prebuild_info=prebuild_info, customs=customs, prebuilds=prebuilds, show=True)
-        return render_template("compare-customs.html", customs=customs, prebuilds=prebuilds, show=False)
+                return render_template("compare-customs.html", custom_info=custom_info, prebuild_info=prebuild_info, customs=customs, prebuilds=prebuilds, show=True)
+            else:
+                 return render_template("compare-customs.html", prebuild_info=prebuild_info, customs=customs, prebuilds=prebuilds, error="custom")
+        else:
+            return render_template("compare-customs.html", customs=customs, prebuilds=prebuilds, error="prebuild")
 
     return render_template("compare-customs.html", customs=customs, prebuilds=prebuilds, show=show)
 

@@ -5,8 +5,8 @@
 
 <nav style="--bs-breadcrumb-divider: '>'; color: white;" aria-label="breadcrumb" class="d-flex justify-content-center ">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/basket">Basket</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><a href="/checkout-shipping">Shipping</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('basket') }}">Basket</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('checkout_shipping') }}">Shipping</a></li>
     <li class="breadcrumb-item">Payment</li>
   </ol>
 </nav>
@@ -25,7 +25,7 @@
 </div>
 {% endif %}
 <div class="d-flex justify-content-center mt-5">
-<form class="shipping-form justify-content-center " action="/checkout-shipping" method="post">
+<form class="shipping-form justify-content-center " action="{{ url_for('checkout_shipping') }}" method="post">
         <div class="form-check form-check2 d-flex align-items-center mb-3">
         <input class="form-check-input" type="radio" name="shipping_service" id="standard" value="standard" checked  style="height: 30px; width: 30px; margin-top: -10px;">
         <label class="form-check-label" for="standard">

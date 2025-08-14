@@ -3,8 +3,8 @@
 
 <nav style="--bs-breadcrumb-divider: '>'; color: white;" aria-label="breadcrumb" class="d-flex justify-content-center ">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page"><a href="/basket">Basket</a></li>
-    <li class="breadcrumb-item">Shippinga</li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('basket')}}">Basket</a></li>
+    <li class="breadcrumb-item">Shipping</li>
     <li class="breadcrumb-item">Payment</li>
 
   </ol>
@@ -128,7 +128,7 @@
                             
                         </form>
                         {% else %}
-                        <form action="/minus1_to_basket" method="post" style="display: inline;">
+                        <form action="/add1_to_basket" method="post" style="display: inline;">
 
                             <input type="hidden" name="product_name" value="{{ item.name }}">
 
@@ -171,7 +171,7 @@
 {% else %}
     <div class="look_for_container">
     <p>Your basket is empty.</p>
-    <p>Check out our <a href="/prebuilds" class="link">products</a> to find something you like!</p>
+    <p>Check out our <a href="{{ url_for('prebuilds') }}" class="link">products</a> to find something you like!</p>
     <img src="{{ url_for('static', filename='images/Aura Titan.png') }}" style="width: 100%; max-width: 600px; height: auto; margin-top: 20px;" alt="Aura Titan" />
     </div>
 {% endif %}

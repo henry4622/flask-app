@@ -4,9 +4,9 @@
 
 <nav style="--bs-breadcrumb-divider: '>'; color: white;" aria-label="breadcrumb" class="d-flex justify-content-center ">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/basket">Basket</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><a href="/checkout-shipping">Shipping</a></li>
-    <li class="breadcrumb-item"><a href="/checkout-payment">Payment</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('basket') }}">Basket</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('checkout_shipping') }}">Shipping</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('checkout_payment') }}">Payment</a></li>
   </ol>
 </nav>
 {% if error %}
@@ -100,7 +100,7 @@
                 <div class="medium-hr"></div>
                 <h1 style="color: white; margin-top: 30px; font-size: 45px;">Final Cost: £{{ total_price + cost }}</h1>
                 <br>
-                <form action="/checkout-payment" method="post">
+                <form action="{{ url_for('checkout_payment') }}" method="post">
                     <button type="submit" class="btn btn-primary" style="height: 100px; width: 450px; font-size: 45px; font-family: 'poppins', sans-serif;">Confirm and Pay</button>
                 </form>
             </div>
