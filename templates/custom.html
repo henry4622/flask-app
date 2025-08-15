@@ -13,6 +13,11 @@
     </div>
 
     {% endif %}
+    {% if error == "exists" %}
+    <div class="alert alert-danger" role="alert">
+        <p style="color: black; font-size: 30px;">A build with this name already exists, please choose a different name.</p>
+    </div>
+    {% endif %}
     <div class="look_for_container mx-auto" style="width: 1200px">
     <h1 class="title">Custom PCs </h1>
     <div class="medium-hr"></div>
