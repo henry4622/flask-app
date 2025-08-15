@@ -12,6 +12,11 @@
     {% if  not pcs %}
     <p>You have no saved custom builds click <a href="{{ url_for('design_cpu')}}">here</a> to start designing!</p>
     {% else %}
+    {% if success == "yes" %}
+    <div class="alert alert-success" role="alert">
+        <p style="color: black; font-size: 30px;">PC has been successfully added to basket! Click <a href="/basket">here</a> to view your basket</p>
+    </div>
+    {% endif %}
     <table class="summary-table mx-auto" style="width:1700px; font-size: 20px;">
         <thead>
             <th>Name</th>

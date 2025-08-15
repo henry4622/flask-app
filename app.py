@@ -801,42 +801,17 @@ def design_name():
 
     return render_template("design-name.html")
 
-@app.route('/custom-checkout', methods=["POST"])
-def custom_checkout():
-    name = request.cookies.get("pc_name")
-    cost = request.cookies.get("cost")
-    email = request.cookies.get("email")
-    if not email:
-        return redirect(url_for('login'))
-    if run_query("SELECT * FROM basket WHERE user_email = ? AND name = ?", (email, name)):
-        return render_template("custom.html", error="exists")
-    else:
-        cpu = request.cookies.get("cpu")
-        motherboard = request.cookies.get("motherboard")
-        ram = request.cookies.get("ram")
-        gpu = request.cookies.get("gpu")
-        cooler = request.cookies.get("cooler")
-        psu = request.cookies.get("psu")
-        storage = request.cookies.get("storage").split(",")
-        case = request.cookies.get("case")
-        email = request.cookies.get("email")
-        cost = request.cookies.get("cost")
-        pc_name = request.cookies.get("pc_name")
-        run_query("INSERT INTO custom_builds (cpu, motherboard, ram, storage, cooler, gpu, psu, pc_case, email, cost, name) VALUES (?,?,?,?,?,?,?,?,?,?,?)",(str(cpu), str(motherboard), str(ram), str(storage), str(cooler), str(gpu), str(psu), str(case), email, cost, pc_name))
-        custom_info = run_query("SELECT * FROM custom_builds WHERE name = ? AND email = ?", (name, email))
-        run_query("INSERT INTO basket (user_email, name, price, type, cpu, motherboard, ram, gpu, storage, cooler, psu, pc_case) VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?)", (email, name, custom_info[0]['cost'], "Custom", custom_info[0]['cpu'], custom_info[0]['motherboard'], custom_info[0]['ram'], custom_info[0]['gpu'], custom_info[0]['storage'], custom_info[0]['cooler'], custom_info[0]['psu'], custom_info[0]['case']))
-    return redirect("/basket")
-
 @app.route('/custom-basket', methods=["POST"])
 def custom_basket():
     email = request.cookies.get("email")
+    success = None
     id = request.form.get("id")
     custom_info = run_query("SELECT * FROM custom_builds WHERE id = ?", (id,))
     if run_query("SELECT * FROM basket WHERE user_email = ? AND name = ?", (email, custom_info[0]['name'])):
         run_query("UPDATE basket SET quantity = quantity + 1 WHERE user_email = ? AND name = ?", (email, custom_info[0]['name']))
     else:
         run_query("INSERT INTO basket (user_email, name, price, type, cpu, motherboard, ram, gpu, storage, cooler, psu, pc_case) VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?)", (email, custom_info[0]['name'], custom_info[0]['cost'], "Custom", custom_info[0]['cpu'], custom_info[0]['motherboard'], custom_info[0]['ram'], custom_info[0]['gpu'], custom_info[0]['storage'], custom_info[0]['cooler'], custom_info[0]['psu'], custom_info[0]['pc_case']))
-    return redirect("/view-custom-builds")
+    return redirect("/view-custom-builds", success="yes")
 
 @app.route('/compare-customs', methods=['GET', 'POST'])
 def compare_customs():
