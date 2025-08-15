@@ -875,3 +875,7 @@ def account():
     firstname = request.cookies.get('firstname')
     email = request.cookies.get('email')
     return render_template("account.html", firstname=firstname, email=email)
+
+@app.route('/gdad', methods=['GET'])
+def gdad():
+    return render_template("gdad.html")
