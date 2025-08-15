@@ -39,6 +39,7 @@
         <td style="padding-left: 20px;">{{ pc.pc_case }}</td>
         <td style="padding-left: 20px; padding-right: 20px;"> £{{ pc.cost }} </td>
         <td style="display: flex; margin-top: 40px;">
+        <td>
         <form action="/remove-custom-build" method="post" style="display: inline;">
 
             <input type="hidden" name="id" value="{{ pc.id }}">
@@ -52,6 +53,7 @@
             <input type="hidden" name="id" value="{{ pc.id }}">
             <button class="btn btn-primary" style="margin-right: 10px;" id="liveToastBtn{{ pc.id }}">Add To Basket</button>
         </form>
+        </td>
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="liveToast{{ pc.id }}">
                   <div class="toast-body">
