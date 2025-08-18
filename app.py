@@ -14,7 +14,7 @@ from email.message import EmailMessage
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key' 
+app.config['SECRET_KEY'] = 'hello' 
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
@@ -382,7 +382,7 @@ def is_eligible_postcode(postcode, allowed_counties):
     return district in allowed_counties
 
 def is_valid_postcode(postcode):
-    postcode = postcode.replace(" ", "")  # Remove spaces
+    postcode = postcode.replace(" ", "") 
     url = f"https://api.postcodes.io/postcodes/{postcode}/validate"
     response = requests.get(url)
     data = response.json()
