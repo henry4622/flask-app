@@ -809,7 +809,7 @@ def custom_basket():
         run_query("UPDATE basket SET quantity = quantity + 1 WHERE user_email = ? AND name = ?", (email, custom_info[0]['name']))
     else:
         run_query("INSERT INTO basket (user_email, name, price, type, cpu, motherboard, ram, gpu, storage, cooler, psu, pc_case) VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?)", (email, custom_info[0]['name'], custom_info[0]['cost'], "Custom", custom_info[0]['cpu'], custom_info[0]['motherboard'], custom_info[0]['ram'], custom_info[0]['gpu'], custom_info[0]['storage'], custom_info[0]['cooler'], custom_info[0]['psu'], custom_info[0]['pc_case']))
-    return redirect("/view-custom-builds", success="yes")
+    return redirect("/view-custom-builds")
 
 @app.route('/compare-customs', methods=['GET', 'POST'])
 def compare_customs():
