@@ -71,7 +71,7 @@ def login():
             else:
                 resp = make_response(redirect(url_for('home')))
                 resp.set_cookie('email', email, httponly=True)
-                resp.set_cookie('firstname', actual_email[0]['firstname'], httponly=True)
+                resp.set_cookie('firstname', firstname, httponly=True)
                 return resp
         
         return render_template("login.html", email_error=email_error, password_error=password_error)
