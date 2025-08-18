@@ -57,24 +57,22 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        actual_email = run_query("SELECT email FROM users WHERE email = ?", (email,))
-        actual_password = run_query("SELECT hash FROM users WHERE email = ?", (email,))
-
-        if actual_email is None:
+        user = run_query("SELECT * FROM users WHERE email = ?", (email,))
+        if not user:
             email_error = True
-        elif actual_email and actual_password:
-            stored_hash = actual_password[0]
-
-        if stored_hash != hashlib.sha256(password.encode('utf-8')).hexdigest():
-            password_error = True
-
         else:
+            user = user[0]
+            stored_hash = user['hash']
+            firstname = user['firstname']
 
-            resp = make_response(redirect(url_for('home')))
-            resp.set_cookie('email', email, httponly=True)
-            resp.set_cookie('firstname', actual_email[0]['firstname'], httponly=True)
-            
-            return resp
+            if stored_hash != hashlib.sha256(password.encode('utf-8')).hexdigest():
+                password_error = True
+
+            else:
+                resp = make_response(redirect(url_for('home')))
+                resp.set_cookie('email', email, httponly=True)
+                resp.set_cookie('firstname', actual_email[0]['firstname'], httponly=True)
+                return resp
         
         return render_template("login.html", email_error=email_error, password_error=password_error)
             
@@ -875,7 +873,3 @@ def account():
     firstname = request.cookies.get('firstname')
     email = request.cookies.get('email')
     return render_template("account.html", firstname=firstname, email=email)
-
-@app.route('/gdad', methods=['GET'])
-def gdad():
-    return render_template("gdad.html")
