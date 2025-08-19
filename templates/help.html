@@ -38,7 +38,7 @@
     <button type="submit" class="btn btn-primary" style="height: 70px; width: 450px; font-size: 45px; font-family: 'poppins',sans-serif;">Submit</button>
     {% else %}
     <div class="alert alert-danger"></div>
-    <p style="color: black; font-size: 20px;">You must be logged in to submit a help request.</p>
+    <p style="color: black; font-size: 20px;">You must be logged in to submit a help request. <a href="{{ url_for('login') }}">Login in</a></p>
     {% endif %}
 {% endif %}
 
