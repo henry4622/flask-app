@@ -13,34 +13,33 @@
     <p style="color: black">Your request has been sent successfully!</p>
 </div>
 {% else %}
-{% if error == "invalid" %}
-<div class="alert alert-danger" role="alert">
-    <p>Your email is invalid</p>
-</div>
-{% endif %}
+    {% if error == "invalid" %}
+    <div class="alert alert-danger" role="alert">
+        <p>Your email is invalid</p>
+    </div>
+    {% endif %}
 
 
-{% if name %}
-{% if email %}
+    {% if email %}
 
-<p>Welcome to the AURA PCs Help Center! Drop your help request down below and well be back to you within minutes the request will be sent to yout inbox</p>
-<form action="/help" method="post">
-<textarea 
-  style="width: 1000px; height: 500px; font-size: 30px; margin-top: 20px; resize: vertical; padding: 10px; box-sizing: border-box;" 
-  name="request" 
-  id="request" 
-  placeholder="Enter your help request here..." 
-  required></textarea>
+    <p>Welcome to the AURA PCs Help Center! Drop your help request down below and well be back to you within minutes the request will be sent to yout inbox</p>
+    <form action="/help" method="post">
+    <textarea 
+      style="width: 1000px; height: 500px; font-size: 30px; margin-top: 20px; resize: vertical; padding: 10px; box-sizing: border-box;" 
+      name="request" 
+      id="request" 
+      placeholder="Enter your help request here..." 
+      required></textarea>
 
-  <div class="medium-hr"></div>
-  <br>
+      <div class="medium-hr"></div>
+      <br>
 
 
-<button type="submit" class="btn btn-primary" style="height: 70px; width: 450px; font-size: 45px; font-family: 'poppins',sans-serif;">Submit</button>
-{% else %}
-<div class="alert alert-danger"></div>
-<p style="color: black; font-size: 20px;">You must be logged in to submit a help request.</p>
-{% endif %}
+    <button type="submit" class="btn btn-primary" style="height: 70px; width: 450px; font-size: 45px; font-family: 'poppins',sans-serif;">Submit</button>
+    {% else %}
+    <div class="alert alert-danger"></div>
+    <p style="color: black; font-size: 20px;">You must be logged in to submit a help request.</p>
+    {% endif %}
 {% endif %}
 
 </div>
