@@ -863,11 +863,11 @@ def help():
             with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
                 smtp.login(sender_email, sender_password)
                 smtp.send_message(msg)
-            return render_template("help.html", success="True", name=name)
+            return render_template("help.html", success="True", name=name, email=email)
         except Exception as e:
-            return f"Failed to send request: {e}"
+            return render_template("help.html", success="False", name=name, email=email, error="invalid")
 
-    return render_template("help.html")
+    return render_template("help.html", email=email)
 @app.route('/account', methods=['GET'])
 def account():
     firstname = request.cookies.get('firstname')
